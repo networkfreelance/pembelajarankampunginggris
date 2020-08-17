@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -48,4 +49,31 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function login(Request $request)
+    {
+      $input = $request->all();
+        $this->validate($request, [
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+      $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+      if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
+      {
+
+          $level=Auth::user()->level;
+          if($level=="admin"){
+            return redirect('/admindashboard');
+            // return redirect()->route('/admindashboard');
+
+          }else if($level=="peserta"){
+            return redirect('pesertadashboard');
+             // return redirect()->route('/pesertadashboard');
+          }
+      }else{
+          return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
+      }
+    }
+
+
 }
