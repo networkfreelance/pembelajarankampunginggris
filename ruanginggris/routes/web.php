@@ -41,7 +41,6 @@ Route::get('/preview_materi/{id_paket}','Peserta\AdminKelasController@preview_ma
 // Route::get('/memberprofil/edit/{id}','Member\AdminProfilController@edit');
 // Route::post('/pesertakelas/update_aksi','Peserta\AdminKelasController@update_aksi');
 
-
-Route::get('/peserta', 'PesertaController@index');
-Route::get('/peserta/export_excel', 'PesertaController@export_excel');
-Route::post('/peserta/import_excel', 'PesertaController@import_excel');
+Route::get('export', 'ImportExportController@export')->name('export');
+Route::get('importExportView', 'ImportExportController@importExportView');
+Route::post('import', 'ImportExportController@import')->name('import');

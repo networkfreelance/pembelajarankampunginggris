@@ -67,8 +67,14 @@
 				<tr>
 					<th>No</th>
 					<th>Nama</th>
-					<th>NIS</th>
+					<th>Username</th>
+					<th>Email</th>
+					<th>Password</th>
+					<th>UPassword asli</th>
 					<th>Alamat</th>
+					<th>Telp</th>
+					<th>Foto</th>
+					<th>Level</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -77,8 +83,14 @@
 				<tr>
 					<td>{{ $i++ }}</td>
 					<td>{{$s->nama}}</td>
-					<td>{{$s->nis}}</td>
+					<td>{{$s->username}}</td>
+					<td>{{$s->email}}</td>
+					<td>{{$s->password}}</td>
+					<td>{{$s->password_asli}}</td>
 					<td>{{$s->alamat}}</td>
+					<td>{{$s->telp}}</td>
+					<td>{{$s->foto}}</td>
+					<td>{{$s->level}}</td>
 				</tr>
 				@endforeach
 			</tbody>
