@@ -18,5 +18,9 @@ class Bulk extends Model
       'created_at',
       'updated_at',
       'level',
+      'order_id',
+      'nama_paket',
+      'start_login',
+      'expired_login',
     ];
 }

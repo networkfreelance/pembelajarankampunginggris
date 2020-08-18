@@ -40,6 +40,10 @@
                 </thead>
                 <tbody>
                   @foreach($paket as $p)
+                    @foreach($user as $s)
+                    @php
+                      if($s->nama_paket==$p->nama_paket){
+                    @endphp
               		<tr>
               			<td>{{ $p->nama_paket }}</td>
               			<td>{{ $p->harga }}</td>
@@ -49,6 +53,10 @@
 
               			</td>
               		</tr>
+                    @php
+                      }
+                    @endphp
+                    @endforeach
               		@endforeach
                 </tbody>
                 <tfoot>

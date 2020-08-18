@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-class AdminDashboardController extends Controller
+class DashboardController extends Controller
 {
     //
     public function __construct()
@@ -24,13 +24,13 @@ class AdminDashboardController extends Controller
 
       $jumlah_materi = DB::table('materi')
       ->join('paket', 'paket.id_paket', '=', 'materi.id_paket')
-      ->join('users', 'paket.id_user', '=', 'users.id')
-      ->where('users.id',$id_user_login)
+      // ->join('users', 'paket.id_user', '=', 'users.id')
+      // ->where('users.id',$id_user_login)
       ->get();
 
       $jumlah_paket = DB::table("users")
-        ->join('paket', 'paket.id_user', '=', 'users.id')
-        ->where('users.id',$id_user_login)
+        // ->join('paket', 'paket.id_user', '=', 'users.id')
+        // ->where('users.id',$id_user_login)
         ->get();
 
       return view('peserta.dashboard',['jumlah_materi' => $jumlah_materi,'jumlah_paket' =>$jumlah_paket]);

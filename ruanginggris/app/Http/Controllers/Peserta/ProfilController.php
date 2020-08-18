@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class AdminProfilController extends Controller
+class ProfilController extends Controller
 {
     //
     public function __construct()
@@ -24,16 +24,21 @@ class AdminProfilController extends Controller
        ->get();
        // mengirim data pegawai ke view index
 
-       $jumlah_materi = DB::table('materi')
+       $paket_materi = DB::table('materi')
        ->join('paket', 'paket.id_paket', '=', 'materi.id_paket')
-       ->join('users', 'paket.id_user', '=', 'users.id')
-       ->where('users.id',$id_user_login)
        ->get();
 
-       $jumlah_paket = DB::table("users")
-         ->join('paket', 'paket.id_user', '=', 'users.id')
+       $paket_user = DB::table("users")
+         // ->join('paket', 'paket.id_user', '=', 'users.id')
          ->where('users.id',$id_user_login)
          ->get();
+
+         $total_paket = DB::table("users")
+           // ->join('paket', 'paket.id_user', '=', 'users.id')
+
+           ->where('users.id',$id_user_login)
+
+           ->get();
 
        // $total_order = DB::table('produk')
        // ->join('keranjang', 'keranjang.id_produk', '=', 'produk.id_produk')
@@ -41,7 +46,7 @@ class AdminProfilController extends Controller
        // ->get()
        // ->sum("produk.harga * keranjang.jumlah");
 
-       return view('peserta.profil',['users' => $users, 'jumlah_materi' =>$jumlah_materi, 'jumlah_paket' =>$jumlah_paket]);
+       return view('peserta.profil',['users' => $users, 'paket_materi' =>$paket_materi, 'paket_user' =>$paket_user, 'total_paket' =>$total_paket]);
     }
 
    // public function tambah()

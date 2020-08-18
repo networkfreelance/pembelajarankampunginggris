@@ -27,10 +27,26 @@
 
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              <b>Total Materi</b> <a class="pull-right">{{ count($jumlah_materi) }}</a>
+              <b>Total Materi</b> <a class="pull-right">
+                @php
+                $no=0;
+                @endphp
+                @foreach($paket_materi as $pm)
+                  @foreach($paket_user as $ps)
+                  @php
+                    if($pm->nama_paket==$ps->nama_paket){
+                      $no++
+                  @endphp
+                      {{ $no }}
+                  @php
+                    }
+                  @endphp
+                @endforeach
+              @endforeach
+              </a>
             </li>
             <li class="list-group-item">
-              <b>Jumlah Paket</b> <a class="pull-right">{{ count($jumlah_paket) }}</a>
+              <b>Jumlah Paket</b> <a class="pull-right">{{ count($total_paket) }}</a>
             </li>
 
           </ul>

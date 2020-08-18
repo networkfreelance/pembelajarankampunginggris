@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class AdminKelasController extends Controller
+class KelasController extends Controller
 {
     //
     public function __construct()
@@ -20,38 +20,47 @@ class AdminKelasController extends Controller
        // mengambil data dari table pegawai
        $id_user_login=Auth::user()->id;
        $paket = DB::table('paket')
-       ->where('id_user',$id_user_login)
+       // ->where('id_user',$id_user_login)
        ->get();
 
-       $materi = DB::table('materi')
-       ->join('paket', 'paket.id_paket', '=', 'materi.id_paket')
-       ->join('users', 'paket.id_user', '=', 'users.id')
-       ->where('users.id',$id_user_login)
+       // $materi = DB::table('materi')
+       // ->join('paket', 'paket.id_paket', '=', 'materi.id_paket')
+       // // ->join('users', 'paket.id_user', '=', 'users.id')
+       // // ->where('users.id',$id_user_login)
+       // ->get();
+
+       $user = DB::table('users')
+       ->where('id',$id_user_login)
        ->get();
 
 
        // mengirim data pegawai ke view index
-       return view('peserta.kelas',['paket' => $paket, 'materi' => $materi]);
+       return view('peserta.kelas',['paket' => $paket, 'user' => $user]);
     }
 
     public function lihat_materi($id_paket)
     {
        // mengambil data dari table pegawai
        $id_user_login=Auth::user()->id;
+
+       $user = DB::table('users')
+       ->where('id',$id_user_login)
+       ->get();
+
        $paket = DB::table('paket')
-       ->where('id_user',$id_user_login)
+       // ->where('id_user',$id_user_login)
        ->get();
 
        $materi = DB::table('materi')
        ->join('paket', 'paket.id_paket', '=', 'materi.id_paket')
-       ->join('users', 'paket.id_user', '=', 'users.id')
-       ->where('users.id', $id_user_login)
+       // ->join('users', 'paket.id_user', '=', 'users.id')
+       // ->where('users.id', $id_user_login)
        ->where('materi.id_paket', '=', $id_paket)
        ->get();
 
 
        // mengirim data pegawai ke view index
-       return view('peserta.kelas',['paket' => $paket, 'materi' => $materi]);
+       return view('peserta.kelas',['paket' => $paket, 'materi' => $materi, 'user' => $user]);
     }
 
     public function preview_materi($id_materi)
@@ -59,13 +68,13 @@ class AdminKelasController extends Controller
        // mengambil data dari table pegawai
        $id_user_login=Auth::user()->id;
        $paket = DB::table('paket')
-       ->where('id_user',$id_user_login)
+       // ->where('id_user',$id_user_login)
        ->get();
 
        $materi = DB::table('materi')
        ->join('paket', 'paket.id_paket', '=', 'materi.id_paket')
-       ->join('users', 'paket.id_user', '=', 'users.id')
-       ->where('users.id', $id_user_login)
+       // ->join('users', 'paket.id_user', '=', 'users.id')
+       // ->where('users.id', $id_user_login)
        ->where('materi.id_materi', '=', $id_materi)
        ->get();
 
