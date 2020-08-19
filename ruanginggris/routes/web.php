@@ -26,6 +26,10 @@ Route::get('/adminpeserta','Admin\PesertaController@index')->name('adminpeserta'
 Route::post('/adminpeserta/import','Admin\PesertaController@import')->name('adminpesertaimport');
 Route::post('/adminpeserta/hapus_aksi/{id}','Admin\PesertaController@hapus_aksi')->name('adminpesertahapus');
 
+Route::get('/adminpaket','Admin\PaketController@index')->name('adminpaket');
+Route::get('/adminmateri','Admin\MateriController@index')->name('adminmateri');
+Route::get('/adminmateri/lihat_materi/{id_paket}','Admin\MateriController@lihat_materi')->name('adminlihatmateri');
+
 Route::get('/admin','Admin\AdminController@index')->name('admin');
 Route::post('/admin/import','Admin\AdminController@import')->name('adminimport');
 Route::post('/admin/hapus_aksi/{id}','Admin\AdminController@hapus_aksi')->name('adminhapus');
