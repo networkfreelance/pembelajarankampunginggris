@@ -8,6 +8,7 @@
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     <li class="active"> Materi</li>
+    <li class="active"> Lihat Materi</li>
     <li class="active"> Tambah Materi</li>
   </ol>
 </section>
@@ -15,7 +16,7 @@
 <!-- Main content -->
 <section class="content">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <!-- general form elements -->
       <div class="box box-primary">
         <!-- /.box-header -->

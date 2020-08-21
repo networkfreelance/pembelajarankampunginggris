@@ -26,7 +26,7 @@
               <p>Total materi</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="fa fa-file-text"></i>
             </div>
 
           </div>
@@ -40,7 +40,7 @@
               <p>Total paket</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa fa-book"></i>
             </div>
 
           </div>

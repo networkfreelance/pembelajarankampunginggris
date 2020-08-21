@@ -75,6 +75,7 @@ class MateriController extends Controller
   }
 
   public function aksi_tambah_materi(Request $request){
+    $todayDate = date("Y-m-d H:i:s");
     $materi = $request->input('materi');
     $konten = $request->input('konten');
 
@@ -104,7 +105,7 @@ class MateriController extends Controller
         'nama_materi' => $request->materi,
         'konten' => $request->konten,
         'video' => $image,
-        // 'tanggal_publikasi' => '',
+        'tanggal_publikasi' => $todayDate,
       ]);
 
      return response()->json($output);
