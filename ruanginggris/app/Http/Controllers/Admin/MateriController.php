@@ -71,7 +71,11 @@ class MateriController extends Controller
   }
 
   public function tambah_materi_view($id){
-    return view('admin.tambah_materi');
+     $materi = DB::table('materi')
+    ->where('id_paket',$id)
+    ->limit(1)
+    ->get();
+    return view('admin.tambah_materi',compact('materi'));
   }
 
   public function aksi_tambah_materi(Request $request){
@@ -80,7 +84,7 @@ class MateriController extends Controller
     $konten = $request->input('konten');
 
     $rules = array(
-      'file'  => 'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:2100040|required'
+      'file'  => 'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:2000000|required'
     );
 
     $error = Validator::make($request->all(), $rules);
@@ -104,7 +108,7 @@ class MateriController extends Controller
         'id_paket' => $request->id,
         'nama_materi' => $request->materi,
         'konten' => $request->konten,
-        'video' => $image,
+        'video' => $new_name,
         'tanggal_publikasi' => $todayDate,
       ]);
 
