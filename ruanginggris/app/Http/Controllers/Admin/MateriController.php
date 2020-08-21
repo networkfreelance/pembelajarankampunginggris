@@ -100,7 +100,7 @@ class MateriController extends Controller
     $image->move(public_path('video'), $new_name);
 
     $output = array(
-      'success' => 'Image uploaded successfully',
+      'success' => 'Video uploaded successfully',
       // 'image'  => '<img src="/pembelajarankampunginggris/ruanginggris/public/images/'.$new_name.'" class="img-thumbnail" />'
     );
 
