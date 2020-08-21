@@ -90,7 +90,7 @@
                   <tr>
                     <td>{{ $p2->nama_materi }}</td>
                     <td>
-                      <a href="{{ url('adminmateri/lihat_materi/'.$p->id_paket) }}">Hapus</a>
+                      <a href="{{ url('/hapus_aksi/'.$p2->id_materi) }}">Hapus</a>
                     </td>
                   </tr>
                   @endforeach

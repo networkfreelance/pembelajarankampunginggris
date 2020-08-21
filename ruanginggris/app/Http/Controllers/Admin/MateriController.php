@@ -66,8 +66,8 @@ class MateriController extends Controller
 
   public function hapus_aksi($id)
   {
-    DB::table('users')->where('id',$id)->delete();
-    return redirect('/adminmateri');
+    DB::table('materi')->where('id_materi',$id)->delete();
+    return redirect()->back();
   }
 
   public function tambah_materi_view($id){
