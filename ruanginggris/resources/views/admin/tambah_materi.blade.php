@@ -26,15 +26,15 @@
           <div class="box-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Nama Materi</label>
-              <input type="text" name="materi" class="form-control" id="exampleInputEmail1" placeholder="Materi">
+              <input type="text" name="materi" class="form-control" id="exampleInputEmail1" placeholder="Materi" required="">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Konten</label>
-              <input type="text" name="konten" class="form-control" id="exampleInputPassword1" placeholder="Konten">
+              <input type="text" name="konten" class="form-control" id="exampleInputPassword1" placeholder="Konten" required="">
             </div>
             <div class="form-group">
               <label>File Upload</label>
-              <input type="file" name="file" id="file">
+              <input type="file" name="file" id="file" required="">
               <div class="help-block">
                 <div class="progress">
                   <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>

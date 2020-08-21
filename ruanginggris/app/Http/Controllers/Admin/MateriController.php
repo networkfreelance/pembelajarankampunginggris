@@ -99,15 +99,14 @@ class MateriController extends Controller
       // 'image'  => '<img src="/pembelajarankampunginggris/ruanginggris/public/images/'.$new_name.'" class="img-thumbnail" />'
     );
 
-    return response()->json($output);
+     DB::table('materi')->insert([
+        'id_paket' => $request->id,
+        'nama_materi' => $request->materi,
+        'konten' => $request->konten,
+        'video' => $image,
+        // 'tanggal_publikasi' => '',
+      ]);
 
-    DB::table('materi')
-    ->insert([
-      'id_materi' => $id_user_login,
-      'id_paket' => $request->id,
-      'konten' => $request->konten,
-      'video' => $image,
-      // 'tanggal_publikasi' => $d,
-    ]);
+     return response()->json($output);
   }
 }
