@@ -71,7 +71,7 @@
   </div>
   <!-- /.box -->
   </div>
-  <a href="{{ url('adminpaket/tambah') }}" class="btn btn-success btn-lg pull-right">Tambah Materi</a>
+  <a href="{{ url('admin_materi_tambah/'.$p->id_paket) }}" class="btn btn-success btn-lg pull-right">Tambah Materi</a>
   <div class="col-md-6">
 
   <!-- Default box -->

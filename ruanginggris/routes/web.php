@@ -34,6 +34,9 @@ Route::get('/admin','Admin\AdminController@index')->name('admin');
 Route::post('/admin/import','Admin\AdminController@import')->name('adminimport');
 Route::post('/admin/hapus_aksi/{id}','Admin\AdminController@hapus_aksi')->name('adminhapus');
 
+// -----------------------------garap ane irhas----------------------------
+Route::get('/admin_materi_tambah/{id}','Admin\MateriController@tambah_materi_view');
+Route::post('/admin_aksi_materi_tambah','Admin\MateriController@aksi_tambah_materi')->name('upload');;
 
 
 Route::get('/pesertadashboard','Peserta\DashboardController@index')->name('pesertadashboard');
