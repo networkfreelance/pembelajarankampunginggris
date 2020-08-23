@@ -25,6 +25,10 @@
     </form> -->
   </div>
   <div class="col-md-12">
+    <div class="col-md-12">
+    <a href="{{ url('adminpaket/tambah/') }}" class="btn btn-success btn-lg pull-right">Tambah Paket</a>
+    </div>
+    <div class="col-md-12">
   <!-- Default box -->
   <div class="box">
     <div class="box-header with-border">
