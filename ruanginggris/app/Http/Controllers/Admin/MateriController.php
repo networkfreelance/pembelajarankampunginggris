@@ -126,7 +126,6 @@ class MateriController extends Controller
     }
 
     $image = $request->file('file');
-
     $new_name = rand() . '.' . $image->getClientOriginalExtension();
     $image->move(public_path('video'), $new_name);
 
@@ -134,12 +133,17 @@ class MateriController extends Controller
       'success' => 'Video uploaded successfully',
     );
 
+    $photo_db_update = $request->input('video');
+    $destinationPath2 = public_path() . '/video/'.$photo_db_update;
+    File::delete($destinationPath2);
+
       DB::table('materi')
       ->where('id_materi',$request->id_materi)
       ->update([
          'id_paket' => $id_paket,
          'nama_materi' => $request->materi,
          'konten' => $request->konten,
+         'video' => $new_name,
        ]);
      return response()->json($output);
   }
