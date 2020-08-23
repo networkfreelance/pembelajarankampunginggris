@@ -9,7 +9,7 @@
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     <li class="active"> Materi</li>
     <li class="active"> Lihat Materi</li>
-    <li class="active"> Tambah Materi</li>
+    <li class="active"> Edit Materi</li>
   </ol>
 </section>
 
@@ -21,23 +21,23 @@
       <div class="box box-primary">
         <!-- /.box-header -->
         <!-- form start -->
-        
-        <form method="post" action="{{ url('admin_aksi_materi_tambah') }}" enctype="multipart/form-data">
+         @foreach($materi as $m)
+        <form method="post" action="{{ url('admin_materi_aksi_edit') }}" enctype="multipart/form-data">
           @csrf
-          <!-- {{ csrf_token() }} -->
-          <input type="hidden" name="id" class="form-control" value="{{ $id_paket }}">
+          <input type="hidden" name="id_materi" class="form-control" value="{{ $m->id_materi }}">
+          <input type="hidden" name="id_paket" class="form-control" value="{{ $id_paket }}">
           <div class="box-body">
             <div class="form-group">
-              <label for="exampleInputEmail1">Nama Materi</label>
-              <input type="text" name="materi" class="form-control" id="exampleInputEmail1" placeholder="Materi" required="">
+              <label>Nama Materi</label>
+              <input type="text" name="materi" class="form-control" value="{{ $m->nama_materi }}">
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Konten</label>
-              <input type="text" name="konten" class="form-control" id="exampleInputPassword1" placeholder="Konten" >
+              <label>Konten</label>
+              <input type="text" name="konten" class="form-control" value="{{ $m->konten }}">
             </div>
             <div class="form-group">
               <label>File Upload</label>
-              <input type="file" name="file" id="file" required="">
+              <input type="file" name="file" id="file">
               <div class="help-block">
                 <div class="progress">
                   <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
@@ -49,9 +49,9 @@
           <div id="success"></div>
           <div class="box-footer">
             <button type="submit" name="upload" class="btn btn-primary">Upload</button>
-            <button type="button" onclick="location.reload();" class="btn btn-danger">Upload Lagi</button>
           </div>
         </form>
+        @endforeach
       </div>
       </div>
     </div>
