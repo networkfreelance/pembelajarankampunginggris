@@ -39,11 +39,11 @@
       </div>
     </div>
     <div class="box-body">
-      <table id="example1" class="table table-bordered table-striped">
+      <table id="example2" class="table table-bordered table-striped">
           <thead>
           <tr>
-            <th>Nama materi</th>
-            <th>Aksi</th>
+            <th>Nama Paket</th>
+            <th>Materi</th>
           </tr>
           </thead>
           <tbody>
@@ -51,17 +51,11 @@
             <tr>
               <td>{{ $p->nama_paket }}</td>
               <td>
-                <a href="{{ url('adminmateri/lihat_materi/'.$p->id_paket) }}">Lihat Materi</a>
+                <a href="{{ url('adminmateri/lihat_materi/'.$p->id_paket) }}">Tonton Materi</a>
               </td>
             </tr>
             @endforeach
           </tbody>
-          <tfoot>
-          <tr>
-            <th>Nama Paket</th>
-            <th>Aksi</th>
-          </tr>
-          </tfoot>
         </table>
     </div>
     <!-- /.box-body -->

@@ -180,11 +180,11 @@ $(document).ready(function(){
   $(function () {
     $('#example1').DataTable()
     $('#example2').DataTable({
-      'paging'      : true,
+      'paging'      : false,
       'lengthChange': false,
-      'searching'   : true,
-      'ordering'    : true,
-      'info'        : true,
+      'searching'   : false,
+      'ordering'    : false,
+      'info'        : false,
       'autoWidth'   : false
     })
     // Replace the <textarea id="editor1"> with a CKEditor

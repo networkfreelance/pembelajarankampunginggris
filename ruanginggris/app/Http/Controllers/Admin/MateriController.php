@@ -19,7 +19,6 @@ use Validator;
 
 class MateriController extends Controller
 {
-//
   public function __construct()
   {
     $this->middleware('auth');
@@ -27,20 +26,14 @@ class MateriController extends Controller
 
   public function index()
   {
-// mengambil data dari table pegawai
     $paket = DB::table('paket')
     ->get();
 
-    $materi = DB::table('materi')
-    ->get();
-
-// mengirim data pegawai ke view index
-    return view('admin.materi',['materi' => $materi, 'paket' => $paket]);
+    return view('admin.materi',['paket' => $paket]);
   }
 
-  public function lihat_materi($id_paket)
+  public function lihat_materi(Request $request, $id_paket)
   {
-// mengambil data dari table pegawai
     $paket = DB::table('paket')
     ->get();
 
@@ -48,8 +41,19 @@ class MateriController extends Controller
     ->where('id_paket',$id_paket)
     ->get();
 
-// mengirim data pegawai ke view index
-    return view('admin.lihat_materi',['materi' => $materi, 'paket' => $paket]);
+    $slug = DB::table('paket')
+    ->where('id_paket',$id_paket)
+    ->get();
+
+    $nama_paket = [];
+
+    foreach ($slug as $data) {
+      $nama_paket = $data->nama_paket;
+    }
+
+    $id_paket = $request->route('id_paket');
+
+    return view('admin.lihat_materi',['materi' => $materi, 'paket' => $paket, 'nama_paket' => $nama_paket, 'id_paket' => $id_paket]);
   }
 
   public function import()
@@ -70,7 +74,16 @@ class MateriController extends Controller
     return redirect()->back();
   }
 
-  public function tambah_materi_view($id){
+  public function tambah_materi_view(Request $request, $id){
+
+    $id_paket = $request->route('id');
+
+
+    // dd($id2);
+    return view('admin.tambah_materi',compact('id_paket'));
+  }
+
+   public function edit_materi_view($id){
      $materi = DB::table('materi')
     ->where('id_paket',$id)
     ->limit(1)

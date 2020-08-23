@@ -36,6 +36,7 @@ Route::post('/admin/hapus_aksi/{id}','Admin\AdminController@hapus_aksi')->name('
 
 // -----------------------------garap ane irhas----------------------------
 Route::get('/admin_materi_tambah/{id}','Admin\MateriController@tambah_materi_view');
+Route::get('/admin_materi_edit/{id}','Admin\MateriController@edit_materi_view');
 Route::post('/admin_aksi_materi_tambah','Admin\MateriController@aksi_tambah_materi');
 Route::get('/hapus_aksi/{id}','Admin\MateriController@hapus_aksi');
 

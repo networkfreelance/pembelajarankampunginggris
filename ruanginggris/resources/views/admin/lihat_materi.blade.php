@@ -39,11 +39,11 @@
       </div>
     </div>
     <div class="box-body">
-          <table id="example1" class="table table-bordered table-striped">
+          <table id="example2" class="table table-bordered table-striped">
               <thead>
               <tr>
-                <th>Nama materi</th>
-                <th>Aksi</th>
+                <th>Nama Paket</th>
+                <th>Materi</th>
               </tr>
               </thead>
               <tbody>
@@ -51,17 +51,11 @@
                 <tr>
                   <td>{{ $p->nama_paket }}</td>
                   <td>
-                    <a href="{{ url('adminmateri/lihat_materi/'.$p->id_paket) }}">Lihat Materi</a>
+                    <a href="{{ url('adminmateri/lihat_materi/'.$p->id_paket) }}">Tonton Materi</a>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
-              <tfoot>
-              <tr>
-                <th>Nama Paket</th>
-                <th>Aksi</th>
-              </tr>
-              </tfoot>
             </table>
     </div>
     <!-- /.box-body -->
@@ -73,14 +67,14 @@
   <!-- Default box -->
   <div class="box">
     <div class="box-header with-border">
-      <a href="{{ url('admin_materi_tambah/'.$p->id_paket) }}" class="btn btn-success btn-lg pull-right">Tambah Materi</a>
-      <h3 class="box-title">Daftar materi dari Paket <?php echo $p->nama_paket; ?></h3>
+      <a href="{{ url('admin_materi_tambah/'.$id_paket) }}" class="btn btn-success btn-lg pull-right">Tambah Materi</a>
+      <h3 class="box-title">Daftar materi dari {{ $nama_paket }}</h3>
     </div>
     <div class="box-body">
-            <table id="example2" class="table table-bordered table-striped">
+            <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Nama materi</th>
+                  <th>Nama Materi</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -89,21 +83,13 @@
                   <tr>
                     <td>{{ $p2->nama_materi }}</td>
                     <td>
-                      <a href="{{ url('/hapus_aksi/'.$p2->id_materi) }}">Hapus</a>
+                      <a href="{{ url('/hapus_aksi/'.$p2->id_materi) }}">Edit</a> | <a href="{{ url('/hapus_aksi/'.$p2->id_materi) }}">Hapus</a>
                     </td>
                   </tr>
                   @endforeach
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>Nama Paket</th>
-                  <th>Aksi</th>
-                </tr>
-                </tfoot>
               </table>
     </div>
-    <!-- /.box-body
-    <!-- /.box-footer-->
   </div>
   <!-- /.box -->
   </div>

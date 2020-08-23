@@ -21,11 +21,11 @@
       <div class="box box-primary">
         <!-- /.box-header -->
         <!-- form start -->
-        @foreach($materi as $p)
+        
         <form method="post" action="{{ url('admin_aksi_materi_tambah') }}" enctype="multipart/form-data">
           @csrf
           <!-- {{ csrf_token() }} -->
-          <input type="hidden" name="id" class="form-control" value="{{ $p->id_paket }}">
+          <input type="hidden" name="id" class="form-control" value="{{ $id_paket }}">
           <div class="box-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Nama Materi</label>
@@ -51,7 +51,6 @@
             <button type="submit" name="upload" class="btn btn-primary">Submit</button>
           </div>
         </form>
-        @endforeach
       </div>
       </div>
     </div>
