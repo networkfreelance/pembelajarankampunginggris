@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class PesertaController extends Controller
 {
@@ -33,7 +34,7 @@ class PesertaController extends Controller
        return view('admin.peserta',['peserta' => $peserta]);
     }
 
-    public function import()
+    public function import(Request $request)
     {
       $this->validate($request, [
           'file' => 'required|mimes:xls,xlsx'
@@ -51,6 +52,20 @@ class PesertaController extends Controller
     public function export()
     {
         return Excel::download(new BulkExport, 'bulkData.xlsx');
+    }
+
+    public function cetak_pdf(Request $request)
+    {
+      $tanggal_mulai=$request->tanggal_mulai;
+      $tanggal_akhir=$request->tanggal_akhir;
+
+      $peserta = DB::table('users')
+      ->where('created_at','>',$tanggal_mulai)
+      ->where('created_at','<',$tanggal_akhir)
+      ->get();
+
+    	$pdf = PDF::loadview('admin.cetak_peserta_pdf',['peserta'=>$peserta]);
+    	return $pdf->download('cetak_peserta_pdf');
     }
 
    // public function tambah()

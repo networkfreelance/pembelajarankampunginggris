@@ -14,7 +14,7 @@
 <!-- Main content -->
 <section class="content">
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <!-- <a href="{{ url('adminadmin/tambah') }}" class="btn btn-success btn-lg pull-right">Tambah admin</a> -->
     <form action="{{ url('admin/import') }}" method="POST" name="importform" enctype="multipart/form-data">
         {{ csrf_field() }}
@@ -23,6 +23,18 @@
         <button type="submit" class="btn btn-success">Import Bulk Data</button>
         <a class="btn btn-warning" href="{{ route('export') }}">Export Bulk Data</a>
     </form>
+  </div>
+  <div class="col-md-6">
+    <div class="box box-primary">
+      <div class="box-header">
+        <h3 class="box-title">Navigasi</h3>
+      </div>
+      <div class="box-body">
+        <!-- Date -->
+        <a class="btn btn-danger" href="{{ url('admin/tambah') }}">Tambah User Admin</a>
+      </div>
+      <!-- /.box-body -->
+    </div>
   </div>
   <div class="col-md-12">
   <!-- Default box -->
@@ -44,13 +56,12 @@
                 <tr>
                   <th>Nama</th>
                   <th>Username</th>
-                  <!-- <th>Email</th> -->
+                  <th>Email</th>
                   <th>Password</th>
                   <th>Alamat</th>
                   <th>Kota</th>
                   <th>Telp</th>
                   <th>Level</th>
-                  <th>Nama Paket</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -60,17 +71,16 @@
 
               			<td>{{ $p->nama }}</td>
               			<td>{{ $p->username }}</td>
-                    <!-- <td>{{ $p->email }}</td> -->
+                    <td>{{ $p->email }}</td>
                     <td>{{ $p->password_asli }}</td>
                     <td>{{ $p->alamat }}</td>
                     <td>{{ $p->kota }}</td>
                     <td>{{ $p->telp }}</td>
                     <td>{{ $p->level }}</td>
-                    <td>{{ $p->nama_paket }}</td>
               			<td>
-              				<a href="{{ url('adminadmin/edit/'.$p->id) }}">Edit</a>
+              				<a href="{{ url('admin/edit/'.$p->id) }}">Edit</a>
               				|
-              				<a href="{{ url('adminadmin/hapus_aksi/'.$p->id) }}">Hapus</a>
+              				<a href="{{ url('/admin/hapus_aksi/'.$p->id) }}">Hapus</a>
               			</td>
               		</tr>
               		@endforeach
@@ -79,13 +89,12 @@
                 <tr>
                   <th>Nama</th>
                   <th>Username</th>
-                  <!-- <th>Email</th> -->
+                  <th>Email</th>
                   <th>Password</th>
                   <th>Alamat</th>
                   <th>Kota</th>
                   <th>Telp</th>
                   <th>Level</th>
-                  <th>Nama Paket</th>
                   <th>Aksi</th>
                 </tr>
                 </tfoot>

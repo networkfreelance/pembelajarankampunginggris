@@ -14,7 +14,7 @@
 <!-- Main content -->
 <section class="content">
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <!-- <a href="{{ url('adminpeserta/tambah') }}" class="btn btn-success btn-lg pull-right">Tambah Peserta</a> -->
     <form action="{{ url('/adminpeserta/import') }}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
@@ -23,6 +23,45 @@
         <button class="btn btn-success">Import Bulk Data</button>
         <a class="btn btn-warning" href="{{ route('export') }}">Export Bulk Data</a>
     </form>
+    <!-- <a href="{{ url('/adminpeserta/cetak_pdf') }}" class="btn btn-success btn-lg pull-right">Cetak Username Password</a> -->
+  </div>
+
+  <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header">
+              <h3 class="box-title">Date picker</h3>
+            </div>
+            <div class="box-body">
+              <!-- Date -->
+              <form action="{{ url('/adminpeserta/cetak_pdf') }}" method="POST" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                  <div class="form-group">
+                    <label>$tanggal mulai:</label>
+                    <div class="input-group date">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input type="text" name="tanggal_mulai" class="form-control pull-right" id="datepicker1">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+                  <!-- /.form group -->
+                  <div class="form-group">
+                    <label>$tanggal akhir:</label>
+                    <div class="input-group date">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input type="text" name="tanggal_akhir" class="form-control pull-right" id="datepicker2">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+                  <button class="btn btn-success">Cetak pdf Username Password</button>
+                </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
   </div>
   <div class="col-md-12">
   <!-- Default box -->

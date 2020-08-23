@@ -25,6 +25,7 @@ Route::get('/admindashboard','Admin\DashboardController@index')->name('admindash
 Route::get('/adminpeserta','Admin\PesertaController@index')->name('adminpeserta');
 Route::post('/adminpeserta/import','Admin\PesertaController@import')->name('adminpesertaimport');
 Route::post('/adminpeserta/hapus_aksi/{id}','Admin\PesertaController@hapus_aksi')->name('adminpesertahapus');
+Route::post('/adminpeserta/cetak_pdf','Admin\PesertaController@cetak_pdf')->name('adminpesertacetakpdf');
 
 Route::get('/adminpaket','Admin\PaketController@index')->name('adminpaket');
 Route::get('/adminpaket/tambah','Admin\PaketController@tambah');
@@ -32,9 +33,13 @@ Route::post('/adminpaket/tambah_aksi','Admin\PaketController@tambah_aksi');
 Route::get('/adminmateri','Admin\MateriController@index')->name('adminmateri');
 Route::get('/adminmateri/lihat_materi/{id_paket}','Admin\MateriController@lihat_materi')->name('adminlihatmateri');
 
-Route::get('/admin','Admin\AdminController@index')->name('admin');
+Route::get('/adminku','Admin\AdminController@index')->name('admin');
+Route::get('/admin/tambah','Admin\AdminController@tambah')->name('admin');
+Route::post('/admin/tambah_aksi','Admin\AdminController@tambah_aksi');
+Route::get('/admin/edit/{id}','Admin\AdminController@edit');
+Route::post('/admin/update_aksi','Admin\AdminController@update_aksi');
 Route::post('/admin/import','Admin\AdminController@import')->name('adminimport');
-Route::post('/admin/hapus_aksi/{id}','Admin\AdminController@hapus_aksi')->name('adminhapus');
+Route::get('/admin/hapus_aksi/{id}','Admin\AdminController@hapus_aksi')->name('adminhapus');
 
 // -----------------------------garap ane irhas----------------------------
 Route::get('/admin_materi_tambah/{id}','Admin\MateriController@tambah_materi_view');
@@ -42,6 +47,8 @@ Route::get('/admin_materi_edit/{id}/{id_paket}','Admin\MateriController@edit_mat
 Route::post('/admin_materi_aksi_edit','Admin\MateriController@aksi_edit_materi');
 Route::post('/admin_aksi_materi_tambah','Admin\MateriController@aksi_tambah_materi');
 Route::get('/hapus_aksi/{id}/{video}','Admin\MateriController@hapus_aksi');
+
+
 
 
 Route::get('/pesertadashboard','Peserta\DashboardController@index')->name('pesertadashboard');
