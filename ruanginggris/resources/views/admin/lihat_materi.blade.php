@@ -15,16 +15,6 @@
 <section class="content">
 <div class="row">
   <div class="col-md-12">
-    <!-- <a href="{{ url('adminpaket/tambah') }}" class="btn btn-success btn-lg pull-right">Tambah paket</a> -->
-    <!-- <form action="{{ url('/adminpaket/import') }}" method="POST" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        <input type="file" name="file" class="form-control">
-        <br>
-        <button class="btn btn-success">Import Bulk Data</button>
-        <a class="btn btn-warning" href="{{ route('export') }}">Export Bulk Data</a>
-    </form> -->
-  </div>
-  <div class="col-md-12">
   <!-- Default box -->
   <div class="col-md-12">
   <a href="{{ url('adminpaket/tambah/') }}" class="btn btn-success btn-lg pull-right">Tambah Paket</a>
@@ -90,7 +80,8 @@
                   <tr>
                     <td>{{ $p2->nama_materi }}</td>
                     <td>
-                      <a href="{{ url('/hapus_aksi/'.$p2->id_materi) }}">Edit</a> | <a href="{{ url('/hapus_aksi/'.$p2->id_materi) }}">Hapus</a>
+                      <a href="{{ url('/admin_materi_edit/'.$p2->id_materi.'/'.$id_paket) }}">Edit</a> |
+                      <a href="{{ url('/hapus_aksi/'.$p2->id_materi.'/'.$p2->video) }}">Hapus<input type="hidden" value="{{ $p2->video }}"></a>
                     </td>
                   </tr>
                   @endforeach

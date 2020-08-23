@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
+use File;
 use App\Exports\BulkExport;
 use App\Imports\BulkImport;
 
@@ -68,27 +68,84 @@ class MateriController extends Controller
     return Excel::download(new BulkExport, 'bulkData.xlsx');
   }
 
-  public function hapus_aksi($id)
+  public function hapus_aksi(Request $request, $id, $video)
   {
+    $photo_db_update = $request->route('video');
+    //dd($photo_db_update);
+    $destinationPath2 = public_path() . '/video/'.$photo_db_update;
+    File::delete($destinationPath2);
+
     DB::table('materi')->where('id_materi',$id)->delete();
+
     return redirect()->back();
   }
 
   public function tambah_materi_view(Request $request, $id){
 
     $id_paket = $request->route('id');
-
-
-    // dd($id2);
     return view('admin.tambah_materi',compact('id_paket'));
   }
 
-   public function edit_materi_view($id){
-     $materi = DB::table('materi')
-    ->where('id_paket',$id)
+   public function edit_materi_view(Request $request, $id, $id_paket){
+
+    $slug = DB::table('paket')
+    ->where('id_paket',$id_paket)
+    ->get();
+
+    $nama_paket = [];
+
+    foreach ($slug as $data) {
+      $nama_paket = $data->nama_paket;
+    }
+
+    $id_paket = $request->route('id_paket');
+
+    $materi = DB::table('materi')
+    ->where('id_materi',$id)
     ->limit(1)
     ->get();
-    return view('admin.tambah_materi',compact('materi'));
+
+    return view('admin.edit_materi',compact('materi','id_paket'));
+  }
+
+ public function aksi_edit_materi(Request $request){
+    $id_materi = $request->input('id_materi');
+    $id_paket = $request->input('id_paket');
+    $materi = $request->input('materi');
+    $konten = $request->input('konten');
+
+    $rules = array(
+      'file'  => 'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:2000000|required'
+    );
+
+    $error = Validator::make($request->all(), $rules);
+
+    if($error->fails())
+    {
+      return response()->json(['errors' => $error->errors()->all()]);
+    }
+
+    $image = $request->file('file');
+    $new_name = rand() . '.' . $image->getClientOriginalExtension();
+    $image->move(public_path('video'), $new_name);
+
+    $output = array(
+      'success' => 'Video uploaded successfully',
+    );
+
+    $photo_db_update = $request->input('video');
+    $destinationPath2 = public_path() . '/video/'.$photo_db_update;
+    File::delete($destinationPath2);
+
+      DB::table('materi')
+      ->where('id_materi',$request->id_materi)
+      ->update([
+         'id_paket' => $id_paket,
+         'nama_materi' => $request->materi,
+         'konten' => $request->konten,
+         'video' => $new_name,
+       ]);
+     return response()->json($output);
   }
 
   public function aksi_tambah_materi(Request $request){
