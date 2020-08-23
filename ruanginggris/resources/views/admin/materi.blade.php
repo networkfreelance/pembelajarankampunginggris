@@ -43,13 +43,14 @@
           <thead>
           <tr>
             <th>Nama Paket</th>
-            <th>Materi</th>
+            <th>Buku</th>
           </tr>
           </thead>
           <tbody>
             @foreach($paket as $p)
             <tr>
               <td>{{ $p->nama_paket }}</td>
+              <td>{{ $p->buku }}</td>
               <td>
                 <a href="{{ url('adminmateri/lihat_materi/'.$p->id_paket) }}">Tonton Materi</a>
               </td>

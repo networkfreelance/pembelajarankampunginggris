@@ -35,9 +35,17 @@ class PesertaController extends Controller
 
     public function import()
     {
-        Excel::import(new BulkImport,request()->file('file'));
+      $this->validate($request, [
+          'file' => 'required|mimes:xls,xlsx'
+      ]);
 
-        return back();
+      if ($request->hasFile('file')) {
+          $file = $request->file('file'); //GET FILE
+          Excel::import(new BulkImport, $file); //IMPORT FILE
+          //return redirect()->back()->with(['success' => 'Upload success']);
+      }
+
+      return back();
     }
 
     public function export()

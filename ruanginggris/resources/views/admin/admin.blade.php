@@ -16,11 +16,11 @@
 <div class="row">
   <div class="col-md-12">
     <!-- <a href="{{ url('adminadmin/tambah') }}" class="btn btn-success btn-lg pull-right">Tambah admin</a> -->
-    <form action="{{ url('/adminadmin/import') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('admin/import') }}" method="POST" name="importform" enctype="multipart/form-data">
         {{ csrf_field() }}
         <input type="file" name="file" class="form-control">
         <br>
-        <button class="btn btn-success">Import Bulk Data</button>
+        <button type="submit" class="btn btn-success">Import Bulk Data</button>
         <a class="btn btn-warning" href="{{ route('export') }}">Export Bulk Data</a>
     </form>
   </div>

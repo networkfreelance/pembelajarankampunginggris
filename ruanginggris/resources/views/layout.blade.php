@@ -146,7 +146,7 @@
 <script>
 $(document).ready(function(){
 
-    $('form').ajaxForm({
+    $('#upload_materi').ajaxForm({
       beforeSend:function(){
         $('#success').empty();
       },

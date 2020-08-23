@@ -46,38 +46,39 @@ class PaketController extends Controller
         return Excel::download(new BulkExport, 'bulkData.xlsx');
     }
 
-   // public function tambah()
-   //  {
-   //  	// memanggil view tambah
-   //  	return view('admin.tambah_paket');
-   //  }
-   // public function tambah_aksi(Request $request)
-   //  {
-   //
-   //    $id_user_login=Auth::user()->id;
-   //    $tanggal=date('Y-m-d');
-   //    $this->validate($request, [
-   //      'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-   //    ]);
-   //    // menyimpan data file yang diupload ke variabel $file
-   //  	$file = $request->file('file');
-   //
-   //  	$nama_file = time()."_".$file->getClientOriginalName();
-   //
-   //        	// isi dengan nama folder tempat kemana file diupload
-   //  	$tujuan_upload = 'paket';
-   //  	$file->move($tujuan_upload,$nama_file);
-   //    // insert data ke table pegawai
-   //    DB::table('paket')->insert([
-   //      'id_user' => $id_user_login,
-   //      'judul' => $request->judul,
-   //      'tanggal_publikasi' => $tanggal,
-   //      'konten' => $request->konten,
-   //      'foto' => $nama_file,
-   //    ]);
-   //    // alihkan halaman ke halaman pegawai
-   //    return redirect()->back();
-   //  }
+   public function tambah()
+    {
+    	// memanggil view tambah
+      $paket = DB::table('users')
+      ->groupBy('nama_paket')
+      ->get();
+
+    	return view('admin.tambah_paket',['paket' => $paket]);
+    }
+   public function tambah_aksi(Request $request)
+    {
+
+      $id_user_login=Auth::user()->id;
+      // $tanggal=date('Y-m-d');
+      // $this->validate($request, [
+      //   'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+      // ]);
+      // // menyimpan data file yang diupload ke variabel $file
+    	// $file = $request->file('file');
+      //
+    	// $nama_file = time()."_".$file->getClientOriginalName();
+      //
+      //     	// isi dengan nama folder tempat kemana file diupload
+    	// $tujuan_upload = 'paket';
+    	// $file->move($tujuan_upload,$nama_file);
+      // insert data ke table pegawai
+      DB::table('paket')->insert([
+        'nama_paket' => $request->nama_paket,
+        'buku' => $request->buku,
+      ]);
+      // alihkan halaman ke halaman pegawai
+      return redirect()->back();
+    }
         public function hapus_aksi($id)
          {
            // menghapus data pegawai berdasarkan id yang dipilih

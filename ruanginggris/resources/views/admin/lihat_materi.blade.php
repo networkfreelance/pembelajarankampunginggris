@@ -26,8 +26,13 @@
   </div>
   <div class="col-md-12">
   <!-- Default box -->
+  <div class="col-md-12">
+  <a href="{{ url('adminpaket/tambah/') }}" class="btn btn-success btn-lg pull-right">Tambah Paket</a>
+  </div>
+  <div class="col-md-12">
   <div class="box">
     <div class="box-header with-border">
+
       <h3 class="box-title">Daftar paket</h3>
 
       <div class="box-tools pull-right">
@@ -43,6 +48,7 @@
               <thead>
               <tr>
                 <th>Nama Paket</th>
+                <th>Buku</th>
                 <th>Materi</th>
               </tr>
               </thead>
@@ -50,6 +56,7 @@
                 @foreach($paket as $p)
                 <tr>
                   <td>{{ $p->nama_paket }}</td>
+                  <td>{{ $p->buku }}</td>
                   <td>
                     <a href="{{ url('adminmateri/lihat_materi/'.$p->id_paket) }}">Tonton Materi</a>
                   </td>

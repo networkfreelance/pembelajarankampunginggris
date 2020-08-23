@@ -22,27 +22,21 @@
         <!-- /.box-header -->
         <!-- form start -->
 
-        <form id="upload_materi" method="post" action="{{ url('admin_aksi_materi_tambah') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ url('/adminpaket/tambah_aksi') }}" enctype="multipart/form-data">
           @csrf
           <!-- {{ csrf_token() }} -->
-          <input type="hidden" name="id" class="form-control" value="{{ $id_paket }}">
           <div class="box-body">
             <div class="form-group">
-              <label for="exampleInputEmail1">Nama Materi</label>
-              <input type="text" name="materi" class="form-control" id="exampleInputEmail1" placeholder="Materi" required="">
+              <label for="exampleInputEmail1">Pilih Paket</label>
+                  <select class="form-control" name="nama_paket">
+                    @foreach($paket as $p)
+                         <option name="{{ $p->nama_paket }}">{{ $p->nama_paket }}</option>
+                    @endforeach
+                 </select>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Konten</label>
-              <input type="text" name="konten" class="form-control" id="exampleInputPassword1" placeholder="Konten" required="">
-            </div>
-            <div class="form-group">
-              <label>File Upload</label>
-              <input type="file" name="file" id="file" required="">
-              <div class="help-block">
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
-                </div>
-              </div>
+              <label for="exampleInputPassword1">Buku</label>
+              <input type="text" name="buku" class="form-control" id="exampleInputPassword1" placeholder="Buku" required="">
             </div>
           </div>
           <!-- /.box-body -->

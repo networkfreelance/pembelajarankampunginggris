@@ -33,9 +33,20 @@ class AdminController extends Controller
        return view('admin.admin',['admin' => $admin]);
     }
 
-    public function import()
+    public function import(Request $request)
     {
-        Excel::import(new BulkImport,request()->file('file'));
+
+
+
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file'); //GET FILE
+            Excel::import(new BulkImport, $file); //IMPORT FILE
+            //return redirect()->back()->with(['success' => 'Upload success']);
+        }
 
         return back();
     }

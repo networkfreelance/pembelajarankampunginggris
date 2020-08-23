@@ -31,20 +31,7 @@
 
           </div>
         </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>{{ count($jumlah_paket) }}</h3>
 
-              <p>Total paket</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
-            </div>
-
-          </div>
-        </div>
         <!-- ./col -->
   </div>
 

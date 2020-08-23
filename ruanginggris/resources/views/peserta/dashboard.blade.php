@@ -32,20 +32,6 @@
 
           </div>
         </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>{{ count($jumlah_paket) }}</h3>
-
-              <p>Total paket yang anda registrasi</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-
-          </div>
-        </div>
         <!-- ./col -->
   </div>
 

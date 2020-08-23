@@ -10,7 +10,7 @@
       <li><a href="{{ url('/admindashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       <li><a href="{{ url('/adminpeserta') }}"><i class="fa fa-users"></i> <span>Peserta</span></a></li>
       <li><a href="{{ url('adminmateri') }}"><i class="fa fa-file-text"></i> <span>Materi</span></a></li>
-      <li><a href="{{ url('adminpaket') }}"><i class="fa fa-book"></i> <span>Paket</span></a></li>
+      <li><a href="{{ url('adminpaket') }}"><i class="fa fa-book"></i> <span>Daftar Paket Order Oline</span></a></li>
       <li><a href="{{ url('/admin') }}"><i class="fa fa-user"></i> <span>User Admin</span></a></li>
     </ul>
   </section>
