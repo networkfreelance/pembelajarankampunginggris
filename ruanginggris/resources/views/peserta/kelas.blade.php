@@ -34,7 +34,7 @@
                 <thead>
                 <tr>
                   <th>Nama Paket</th>
-                  <th>Harga</th>
+                  <th>Buku</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -46,7 +46,7 @@
                     @endphp
               		<tr>
               			<td>{{ $p->nama_paket }}</td>
-              			<td>{{ $p->harga }}</td>
+              			<td>{{ $p->buku }}</td>
                     <td>
               				<a href="{{ url('/lihat_materi/'.$p->id_paket) }}">Lihat Materi</a>
               				|
@@ -62,7 +62,7 @@
                 <tfoot>
                 <tr>
                   <th>Nama Paket</th>
-                  <th>Harga</th>
+                  <th>Buku</th>
                   <th>Aksi</th>
                 </tr>
                 </tfoot>
