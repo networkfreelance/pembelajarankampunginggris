@@ -120,7 +120,7 @@ class MateriController extends Controller
 
     $error = Validator::make($request->all(), $rules);
 
-    if($error->fails())
+   if($error->fails())
     {
       return response()->json(['errors' => $error->errors()->all()]);
     }
@@ -128,10 +128,6 @@ class MateriController extends Controller
     $image = $request->file('file');
     $new_name = rand() . '.' . $image->getClientOriginalExtension();
     $image->move(public_path('video'), $new_name);
-
-    $output = array(
-      'success' => 'Video uploaded successfully',
-    );
 
     $photo_db_update = $request->input('video');
     $destinationPath2 = public_path() . '/video/'.$photo_db_update;
@@ -145,7 +141,12 @@ class MateriController extends Controller
          'konten' => $request->konten,
          'video' => $new_name,
        ]);
-     return response()->json($output);
+
+       $output = array(
+      'success' => 'Video uploaded successfully'
+    );
+
+      return response()->json($output);
   }
 
   public function aksi_tambah_materi(Request $request){

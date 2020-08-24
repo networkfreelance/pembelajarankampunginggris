@@ -25,7 +25,7 @@
         <form method="post" action="{{ url('admin_materi_aksi_edit') }}" enctype="multipart/form-data">
           @csrf
           <input type="hidden" name="id_materi" class="form-control" value="{{ $m->id_materi }}">
-          <input type="text" name="video" class="form-control" value="{{ $m->video }}">
+          <input type="hidden" name="video" class="form-control" value="{{ $m->video }}">
           <input type="hidden" name="id_paket" class="form-control" value="{{ $id_paket }}">
           <div class="box-body">
             <div class="form-group">
