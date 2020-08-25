@@ -36,7 +36,9 @@ class DashboardController extends Controller
           $jumlah_paket = DB::table("paket")
             // ->join('paket', 'paket.id_user', '=', 'users.id')
             // ->where('users.id',$id_user_login)
-            ->get();
+          ->get();
+
+
 
           return view('admin.dashboard',['jumlah_materi' => $jumlah_materi,'jumlah_paket' =>$jumlah_paket]);
 

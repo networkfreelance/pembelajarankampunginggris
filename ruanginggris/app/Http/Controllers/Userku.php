@@ -16,8 +16,29 @@ class Userku extends Controller
             return redirect('loginku')->with('alert','Kamu harus login dulu');
         }
         else{
+          echo  $id_user_login=Session::get('id');
+            $status_login = DB::table("users")
+            ->where('id',$id_user_login)
+            // ->where('status_login','login')
+            ->first();
+
+            echo $status_login->status_login;
+              if($status_login->status_login==""){
+                  $tanggal=date('Y-m-d');
+                  $pinjam            = date("Y-m-d");
+                  $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+90,date("Y"));
+                  $kembali      = date("Y-m-d", $tujuh_hari);
+
+                  DB::table('users')->where('id',$id_user_login)->update([
+                    'start_login' => $tanggal,
+                    'expired_login' => $kembali,
+                    'status_login' => 'login',
+                  ]);
+              }
+
             return view('user');
         }
+
     }
 
     public function login(){

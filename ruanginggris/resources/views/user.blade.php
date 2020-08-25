@@ -8,6 +8,7 @@
             <h1>Anak IT -  Tutorial Login, Register, Validasi dengan Laravel 5.4</h1>
             <p>Hallo, {{Session::get('name')}}. Apakabar?</p>
             <p>Level, {{Session::get('level')}}</p>
+            <p>ID, {{Session::get('id')}}</p>
             @php
             $tanggal=date('Y-m-d');
             $pinjam            = date("Y-m-d");
