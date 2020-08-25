@@ -12,13 +12,18 @@ class KelasController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth');
+      if(!Session::get('login')){
+          return redirect('loginku')->with('alert','Kamu harus login dulu');
+      }
+      else{
+          return view('user');
+      }
     }
 
     public function index()
     {
        // mengambil data dari table pegawai
-       $id_user_login=Auth::user()->id;
+       $id_user_login=Session::get('id');
        $paket = DB::table('paket')
        // ->where('id_user',$id_user_login)
        ->get();
@@ -41,7 +46,7 @@ class KelasController extends Controller
     public function lihat_materi($id_paket)
     {
        // mengambil data dari table pegawai
-       $id_user_login=Auth::user()->id;
+       $id_user_login=Session::get('id');
 
        $user = DB::table('users')
        ->where('id',$id_user_login)
@@ -66,7 +71,7 @@ class KelasController extends Controller
     public function preview_materi($id_materi)
     {
        // mengambil data dari table pegawai
-       $id_user_login=Auth::user()->id;
+       $id_user_login=Session::get('id');
        $paket = DB::table('paket')
        // ->where('id_user',$id_user_login)
        ->get();
@@ -86,7 +91,7 @@ class KelasController extends Controller
    // public function tambah()
    //  {
    //  	// memanggil view tambah
-   //    $id_user_login=Auth::user()->id;
+   //    $id_user_login=Session::get('id');
    //    $daftar_toko = DB::table('daftar_toko')
    //    ->where('id_user',$id_user_login)
    //    ->get();
@@ -99,7 +104,7 @@ class KelasController extends Controller
    //  }
    // public function tambah_aksi(Request $request)
    //  {
-   //    $id_user_login=Auth::user()->id;
+   //    $id_user_login=Session::get('id');
    //    // $this->validate($request, [
    //    //   'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
    //    // ]);
@@ -155,7 +160,7 @@ class KelasController extends Controller
    //    	$produk = DB::table('produk')->where('id_produk',$id)->get();
    //      $foto_produk = DB::table('foto_produk')->where('id_produk',$id)->get();
    //    	// passing data pegawai yang didapat ke view edit.blade.php
-   //      $id_user_login=Auth::user()->id;
+   //      $id_user_login=Session::get('id');
    //      $daftar_toko = DB::table('daftar_toko')
    //      ->where('id_user',$id_user_login)
    //      ->get();
@@ -169,7 +174,7 @@ class KelasController extends Controller
    //    }
    //    public function update_aksi(Request $request)
    //    {
-   //      $id_user_login=Auth::user()->id;
+   //      $id_user_login=Session::get('id');
    //      // if($request->file('file')!=NULL){
    //      //     // menyimpan data file yang diupload ke variabel $file
    //      //     $file = $request->file('file');

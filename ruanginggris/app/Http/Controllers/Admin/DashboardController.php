@@ -14,12 +14,17 @@ class DashboardController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth');
+      if(!Session::get('login')){
+          return redirect('loginku')->with('alert','Kamu harus login dulu');
+      }
+      else{
+          return view('user');
+      }
     }
 
     public function index()
     {
-          $id_user_login=Auth::user()->id;
+          $id_user_login=Session::get('id');
 
 
           $jumlah_materi = DB::table('materi')

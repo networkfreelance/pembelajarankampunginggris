@@ -107,6 +107,8 @@
                     <td>{{ $p->level }}</td>
                     <td>{{ $p->nama_paket }}</td>
               			<td>
+                      <a href="{{ url('/adminpeserta/cetak_pdf2/'.$p->id) }}">Cetak</a>
+                      |
               				<a href="{{ url('adminpeserta/edit/'.$p->id) }}">Edit</a>
               				|
               				<a href="{{ url('adminpeserta/hapus_aksi/'.$p->id) }}">Hapus</a>

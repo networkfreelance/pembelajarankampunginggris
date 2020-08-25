@@ -18,14 +18,18 @@ Auth::routes();
 // Route::get('/', 'HomeController@index')->name('home');
 Route::get('/', function () {
     // return view('welcome');
-    return redirect('/login');
+    return redirect('/loginku');
 });
 
 Route::get('/admindashboard','Admin\DashboardController@index')->name('admindashboard');
 Route::get('/adminpeserta','Admin\PesertaController@index')->name('adminpeserta');
 Route::post('/adminpeserta/import','Admin\PesertaController@import')->name('adminpesertaimport');
-Route::post('/adminpeserta/hapus_aksi/{id}','Admin\PesertaController@hapus_aksi')->name('adminpesertahapus');
+Route::get('/adminpeserta/edit/{id}','Admin\PesertaController@edit')->name('adminpesertaedit');
+Route::post('/adminpeserta/update_aksi','Admin\PesertaController@update_aksi')->name('adminpesertaupdate');
+Route::get('/adminpeserta/hapus_aksi/{id}','Admin\PesertaController@hapus_aksi')->name('adminpesertahapus');
+
 Route::post('/adminpeserta/cetak_pdf','Admin\PesertaController@cetak_pdf')->name('adminpesertacetakpdf');
+Route::get('/adminpeserta/cetak_pdf2/{id}','Admin\PesertaController@cetak_pdf2')->name('adminpesertacetakpdf');
 
 Route::get('/adminpaket','Admin\PaketController@index')->name('adminpaket');
 Route::get('/adminpaket/tambah','Admin\PaketController@tambah');
@@ -71,3 +75,11 @@ Route::get('/preview_materi/{id_paket}','Peserta\KelasController@preview_materi'
 Route::get('export', 'ImportExportController@export')->name('export');
 Route::get('importExportView', 'ImportExportController@importExportView');
 Route::post('import', 'ImportExportController@import')->name('import');
+
+
+Route::get('/home_user', 'Userku@index');
+Route::get('/loginku', 'Userku@login');
+Route::post('/loginPost', 'Userku@loginPost');
+Route::get('/registerku', 'Userku@register');
+Route::post('/registerPost', 'Userku@registerPost');
+Route::get('/logoutku', 'Userku@logout');

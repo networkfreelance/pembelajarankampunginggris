@@ -75,8 +75,8 @@
                 <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{Session::get('name')}}
-                  <small>{{Session::get('email')}}</small>
+                  {{ Auth::user()->nama }}
+                  <small>{{ Auth::user()->email }}</small>
                 </p>
               </li>
 
@@ -86,7 +86,11 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{ url('/logoutku') }}" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">Sign out</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                 </div>
               </li>
             </ul>
@@ -99,9 +103,9 @@
   </header>
 
   <!-- =============================================== -->
-  @if(Session::get('level')=="admin")
+  @if(Auth::user()->level=="admin")
       @include('sidebar_admin')
-    @elseif(Session::get('level')=="peserta")
+    @elseif(Auth::user()->level=="peserta")
       @include('sidebar_peserta')
   @endif
   <!-- =============================================== -->

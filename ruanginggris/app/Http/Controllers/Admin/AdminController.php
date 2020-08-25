@@ -22,7 +22,12 @@ class AdminController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth');
+      if(!Session::get('login')){
+          return redirect('loginku')->with('alert','Kamu harus login dulu');
+      }
+      else{
+          return view('user');
+      }
     }
 
     public function index()
@@ -64,7 +69,7 @@ class AdminController extends Controller
     public function tambah_aksi(Request $request)
     {
 
-      $id_user_login=Auth::user()->id;
+      $id_user_login=Session::get('id');
 
       $tanggal=date('Y-m-d');
 
@@ -117,7 +122,7 @@ class AdminController extends Controller
     public function update_aksi(Request $request)
     {
 
-        $id_user_login=Auth::user()->id;
+        $id_user_login=Session::get('id');
         $tanggal=date('Y-m-d');
         if($request->file('file')!=NULL){
 

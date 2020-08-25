@@ -12,13 +12,18 @@ class ProfilController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth');
+      if(!Session::get('login')){
+          return redirect('loginku')->with('alert','Kamu harus login dulu');
+      }
+      else{
+          return view('user');
+      }
     }
 
     public function index()
     {
        // mengambil data dari table pegawai
-       $id_user_login=Auth::user()->id;
+       $id_user_login=Session::get('id');
        $users = DB::table('users')
        ->where('id',$id_user_login)
        ->get();
