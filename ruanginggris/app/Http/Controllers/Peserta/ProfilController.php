@@ -12,18 +12,13 @@ class ProfilController extends Controller
     //
     public function __construct()
     {
-      if(!Session::get('login')){
-          return redirect('loginku')->with('alert','Kamu harus login dulu');
-      }
-      else{
-          return view('user');
-      }
+        $this->middleware('auth');
     }
 
     public function index()
     {
        // mengambil data dari table pegawai
-       $id_user_login=Session::get('id');
+       $id_user_login=Auth::user()->id;
        $users = DB::table('users')
        ->where('id',$id_user_login)
        ->get();
@@ -54,59 +49,6 @@ class ProfilController extends Controller
        return view('peserta.profil',['users' => $users, 'paket_materi' =>$paket_materi, 'paket_user' =>$paket_user, 'total_paket' =>$total_paket]);
     }
 
-   // public function tambah()
-   //  {
-   //  	// memanggil view tambah
-   //  	return view('member.tambah_profil');
-   //  }
-
-   // public function tambah_aksi(Request $request)
-   //  {
-   //    $this->validate($request, [
-   //      'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-   //    ]);
-   //    // menyimpan data file yang diupload ke variabel $file
-   //  	$file = $request->file('file');
-   //
-   //  	$nama_file = time()."_".$file->getClientOriginalName();
-   //
-   //        	// isi dengan nama folder tempat kemana file diupload
-   //  	$tujuan_upload = 'users';
-   //  	$file->move($tujuan_upload,$nama_file);
-   //    // insert data ke table pegawai
-   //    DB::table('users')->insert([
-   //      'id_toko' => "1",
-   //      'barcode' => $request->barcode,
-   //      'nama_users' => $request->nama_users,
-   //      'deskripsi' => $request->deskripsi,
-   //      'merk' => $request->merk,
-   //      'satuan' => $request->satuan,
-   //      'foto' => $nama_file,
-   //      'stok' => $request->stok,
-   //      'harga' => $request->harga,
-   //      'diskon' => $request->diskon,
-   //      'eksternal_link' => $request->eksternal_link,
-   //    ]);
-   //    // alihkan halaman ke halaman pegawai
-   //    return redirect()->back();
-   //  }
-
-    // public function hapus_aksi($id)
-    //  {
-    //    // menghapus data pegawai berdasarkan id yang dipilih
-    //  	DB::table('users')->where('id_users',$id)->delete();
-    //  	// alihkan halaman ke halaman pegawai
-    //  	return redirect('/memberprofil');
-    //  }
-
-     // public function edit($id)
-     //  {
-     //  	// mengambil data pegawai berdasarkan id yang dipilih
-     //  	$users = DB::table('users')->where('id_users',$id)->get();
-     //  	// passing data pegawai yang didapat ke view edit.blade.php
-     //  	return view('member.edit_profil',['users' => $users]);
-     //
-     //  }
       public function update_aksi(Request $request)
       {
 

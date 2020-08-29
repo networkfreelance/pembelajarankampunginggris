@@ -22,12 +22,7 @@ class PesertaController extends Controller
     //
     public function __construct()
     {
-      if(!Session::get('login')){
-          return redirect('loginku')->with('alert','Kamu harus login dulu');
-      }
-      else{
-          return view('user');
-      }
+        $this->middleware('auth');
     }
 
     public function index()
@@ -104,7 +99,7 @@ class PesertaController extends Controller
     public function update_aksi(Request $request)
     {
 
-        $id_user_login=Session::get('id');
+        $id_user_login=Auth::user()->id;
         $tanggal=date('Y-m-d');
         if($request->file('file')!=NULL){
 

@@ -18,7 +18,7 @@ Auth::routes();
 // Route::get('/', 'HomeController@index')->name('home');
 Route::get('/', function () {
     // return view('welcome');
-    return redirect('/loginku');
+    return redirect('/login');
 });
 
 Route::get('/admindashboard','Admin\DashboardController@index')->name('admindashboard');
@@ -77,9 +77,9 @@ Route::get('importExportView', 'ImportExportController@importExportView');
 Route::post('import', 'ImportExportController@import')->name('import');
 
 
-Route::get('/home_user', 'Userku@index');
-Route::get('/loginku', 'Userku@login');
-Route::post('/loginPost', 'Userku@loginPost');
-Route::get('/registerku', 'Userku@register');
-Route::post('/registerPost', 'Userku@registerPost');
-Route::get('/logoutku', 'Userku@logout');
+// Route::get('/home_user', 'Userku@index');
+// Route::get('/loginku', 'Userku@login');
+// Route::post('/loginPost', 'Userku@loginPost');
+// Route::get('/registerku', 'Userku@register');
+// Route::post('/registerPost', 'Userku@registerPost');
+// Route::get('/logoutku', 'Userku@logout');
