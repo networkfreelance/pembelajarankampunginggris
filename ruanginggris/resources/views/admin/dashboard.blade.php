@@ -15,7 +15,7 @@
 <section class="content">
 
   <div class="row">
-    {{ Session::get('id') }}
+    
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
 
