@@ -63,6 +63,7 @@ class LoginController extends Controller
       $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
       $status_login=$data->status_login;
       $start_login=$data->start_login;
+      $expired_login=$data->expired_login;
 
       if($status_login=="nologin"){
 
@@ -79,8 +80,11 @@ class LoginController extends Controller
                   $level=Auth::user()->level;
                   $id_login=Auth::user()->id;
 
+                  $tanggal=date("d-m-Y");
+
                   DB::table('users')->where('id',$id_login)->update([
                     'status_login' => 'login',
+                    'expired_login' => $tanggal,
                   ]);
 
                   if($level=="admin"){
@@ -92,31 +96,27 @@ class LoginController extends Controller
                      // return redirect()->route('/pesertadashboard');
                   }
               }else{
-                $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
-                $status_login=$data->status_login;
-                $id_login=$data->id;
-                DB::table('users')->where('id',$id_login)->update([
-                  'status_login' => 'nologin',
-                ]);
                   return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
               }
         }else{
-          $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
-          $status_login=$data->status_login;
-          $id_login=$data->id;
-          DB::table('users')->where('id',$id_login)->update([
-            'status_login' => 'nologin',
-          ]);
           return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
         }
 
     }else{
-        $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
-        $status_login=$data->status_login;
-        $id_login=$data->id;
-        DB::table('users')->where('id',$id_login)->update([
-          'status_login' => 'nologin',
-        ]);
+        $tanggal           = date("d-m-Y");
+        $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+1,date("Y"));
+        $kembali           = date("Y-m-d", $tujuh_hari);
+
+            if($expired_login<$kembali){
+              $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
+              $status_login=$data->status_login;
+              $id_login=$data->id;
+              DB::table('users')->where('id',$id_login)->update([
+                'status_login' => 'nologin',
+                'expired_login' => $tanggal,
+              ]);
+              return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
+            }
         return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
     }
 
