@@ -59,37 +59,64 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-
-
       //echo 1;
-      $data = DB::table('users')->where('username', $request->username)->first();
+      $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
       $status_login=$data->status_login;
+      $start_login=$data->start_login;
 
       if($status_login=="nologin"){
-      $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-      if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
-      {
 
-          $level=Auth::user()->level;
-          $id_login=Auth::user()->id;
-          
+        $pinjam            = date("d-m-Y");
+        $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+90,date("Y"));
+        $kembali           = date("Y-m-d", $tujuh_hari);
+
+          if($start_login<$kembali){
+
+              $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+              if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
+              {
+
+                  $level=Auth::user()->level;
+                  $id_login=Auth::user()->id;
+
+                  DB::table('users')->where('id',$id_login)->update([
+                    'status_login' => 'login',
+                  ]);
+
+                  if($level=="admin"){
+                    return redirect('/admindashboard');
+                    // return redirect()->route('/admindashboard');
+
+                  }else if($level=="peserta"){
+                    return redirect('pesertadashboard');
+                     // return redirect()->route('/pesertadashboard');
+                  }
+              }else{
+                $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
+                $status_login=$data->status_login;
+                $id_login=$data->id;
+                DB::table('users')->where('id',$id_login)->update([
+                  'status_login' => 'nologin',
+                ]);
+                  return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
+              }
+        }else{
+          $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
+          $status_login=$data->status_login;
+          $id_login=$data->id;
           DB::table('users')->where('id',$id_login)->update([
-            'status_login' => 'login',
+            'status_login' => 'nologin',
           ]);
-
-          if($level=="admin"){
-            return redirect('/admindashboard');
-            // return redirect()->route('/admindashboard');
-
-          }else if($level=="peserta"){
-            return redirect('pesertadashboard');
-             // return redirect()->route('/pesertadashboard');
-          }
-      }else{
           return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
-      }
+        }
 
     }else{
+        $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
+        $status_login=$data->status_login;
+        $id_login=$data->id;
+        DB::table('users')->where('id',$id_login)->update([
+          'status_login' => 'nologin',
+        ]);
         return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
     }
 
@@ -103,11 +130,8 @@ class LoginController extends Controller
         ]);
 
         $this->guard()->logout();
-
         $request->session()->invalidate();
-
         return $this->loggedOut($request) ?: redirect('/login');
     }
-
 
 }
