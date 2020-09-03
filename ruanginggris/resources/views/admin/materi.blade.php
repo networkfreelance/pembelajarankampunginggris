@@ -13,22 +13,13 @@
 
 <!-- Main content -->
 <section class="content">
-<div class="row">
-  <div class="col-md-12">
-    <!-- <a href="{{ url('adminpaket/tambah') }}" class="btn btn-success btn-lg pull-right">Tambah paket</a> -->
-    <!-- <form action="{{ url('/adminpaket/import') }}" method="POST" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        <input type="file" name="file" class="form-control">
-        <br>
-        <button class="btn btn-success">Import Bulk Data</button>
-        <a class="btn btn-warning" href="{{ route('export') }}">Export Bulk Data</a>
-    </form> -->
-  </div>
-  <div class="col-md-12">
+  <div class="row">
     <div class="col-md-12">
     <a href="{{ url('adminpaket/tambah/') }}" class="btn btn-success btn-lg pull-right">Tambah Paket</a>
     </div>
-    <div class="col-md-12">
+  </div>
+<div class="row">
+  <div class="col-md-12">
   <!-- Default box -->
   <div class="box">
     <div class="box-header with-border">
@@ -37,8 +28,8 @@
         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                 title="Collapse">
           <i class="fa fa-minus"></i></button>
-        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-          <i class="fa fa-times"></i></button>
+        <!-- <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+          <i class="fa fa-times"></i></button> -->
       </div>
     </div>
     <div class="box-body">
@@ -67,7 +58,6 @@
   </div>
   <!-- /.box -->
   </div>
-</div>
 </section>
 
 

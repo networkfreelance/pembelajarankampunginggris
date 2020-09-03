@@ -13,12 +13,14 @@
 
 <!-- Main content -->
 <section class="content">
-<div class="row">
+  <div class="row">
   <div class="col-md-12">
-  <!-- Default box -->
-  <div class="col-md-12">
-  <a href="{{ url('adminpaket/tambah/') }}" class="btn btn-success btn-lg pull-right">Tambah Paket</a>
+      <a href="{{ url('adminpaket/tambah/') }}" class="btn btn-success btn-lg pull-right">Tambah Paket</a>
   </div>
+</div>
+<div class="row">
+  <!-- Default box -->
+
   <div class="col-md-12">
   <div class="box">
     <div class="box-header with-border">
@@ -29,8 +31,8 @@
         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                 title="Collapse">
           <i class="fa fa-minus"></i></button>
-        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-          <i class="fa fa-times"></i></button>
+        <!-- <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+          <i class="fa fa-times"></i></button> -->
       </div>
     </div>
     <div class="box-body">
@@ -93,7 +95,7 @@
   </div>
 
 
-</div>
+
 </section>
 
 
