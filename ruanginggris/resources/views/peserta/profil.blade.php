@@ -125,6 +125,13 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="inputName" class="col-sm-2 control-label">Password</label>
+
+              <div class="col-sm-10">
+                <input type="text" name="password_asli" value="{{ $p->password_asli }}" class="form-control" id="inputName" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group">
               <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
               <div class="col-sm-10">

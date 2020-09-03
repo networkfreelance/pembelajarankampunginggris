@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfilController extends Controller
 {
@@ -56,6 +57,8 @@ class ProfilController extends Controller
           DB::table('users')->where('id',$request->id)->update([
             'nama' => $request->nama,
             'username' => $request->username,
+            'password' => Hash::make($request->password_asli),
+            'password_asli' => $request->password_asli,
             'email' => $request->email,
             'alamat' => $request->alamat,
             'telp' => $request->telp,
