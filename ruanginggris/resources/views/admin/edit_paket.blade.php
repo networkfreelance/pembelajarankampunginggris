@@ -3,11 +3,12 @@
 @section('konten')
 <section class="content-header">
   <h1>
-    Tambah Paket
+    Edit Paket
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active"> Tambah Paket</li>
+    <li class="active"> Paket</li>
+    <li> Edit Paket</li>
   </ol>
 </section>
 
@@ -20,7 +21,7 @@
         <!-- /.box-header -->
         <!-- form start -->
 
-        <form method="post" action="{{ url('/adminpaket/tambah_aksi') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ url('/adminpaket/update_aksi') }}" enctype="multipart/form-data">
           @csrf
           <!-- {{ csrf_token() }} -->
           <div class="box-body">
@@ -47,6 +48,10 @@
       </div>
     </div>
   </section>
+
+
+
+
   <!-- /.content -->
   @endsection
   <!-- DataTables -->

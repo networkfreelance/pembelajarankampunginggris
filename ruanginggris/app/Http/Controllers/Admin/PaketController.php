@@ -74,4 +74,17 @@ class PaketController extends Controller
          	return redirect('/adminpaket');
          }
 
+  public function edit_paket($id){
+    $materi = DB::table('paket')
+    ->where('id_paket',$id)
+    ->limit(1)
+    ->get();
+
+    return view('admin.edit_paket',compact('materi'));
+  }
+
+  public function aksi_update_paket(){
+
+  }
+
 }
