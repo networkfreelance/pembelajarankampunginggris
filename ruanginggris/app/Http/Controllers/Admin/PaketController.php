@@ -87,4 +87,10 @@ class PaketController extends Controller
 
   }
 
+   public function hapus_paket_aksi($id_paket)
+  {
+    DB::table('paket')->where('id_paket',$id_paket)->delete();
+    return redirect()->back();
+  }
+
 }
