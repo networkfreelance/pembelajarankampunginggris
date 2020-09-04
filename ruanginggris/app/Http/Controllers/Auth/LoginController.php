@@ -67,7 +67,7 @@ class LoginController extends Controller
 
       if($status_login=="nologin"){
 
-        $pinjam            = date("d-m-Y");
+        $pinjam            = date("Y-m-d");
         $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+90,date("Y"));
         $kembali           = date("Y-m-d", $tujuh_hari);
 
@@ -107,7 +107,7 @@ class LoginController extends Controller
         $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+1,date("Y"));
         $kembali           = date("Y-m-d", $tujuh_hari);
 
-            if($expired_login>$kembali){
+            if($expired_login<$kembali){
               $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
               $status_login=$data->status_login;
               $id_login=$data->id;
@@ -115,10 +115,11 @@ class LoginController extends Controller
                 'status_login' => 'nologin',
                 'expired_login' => $tanggal,
               ]);
-              return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
+
             }
         return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
     }
+
     }
 
     public function logout(Request $request)
