@@ -53,6 +53,9 @@ Route::post('/admin_materi_aksi_edit','Admin\MateriController@aksi_edit_materi')
 Route::post('/admin_aksi_materi_tambah','Admin\MateriController@aksi_tambah_materi');
 Route::get('/hapus_aksi/{id}/{video}','Admin\MateriController@hapus_aksi');
 
+Route::get('/hapus_aksi/{id}','Admin\PaketController@hapus_aksi');
+Route::get('/edit_paket/{id}','Admin\PaketController@edit_paket');
+Route::post('/adminpaket/update_aksi','Admin\PaketController@aksi_update_paket');
 
 
 

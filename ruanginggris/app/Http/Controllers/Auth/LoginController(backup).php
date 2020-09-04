@@ -66,7 +66,7 @@ class LoginController extends Controller
       $expired_login=$data->expired_login;
 
       if($status_login=="nologin"){
-dd($status_login);
+
         $pinjam            = date("d-m-Y");
         $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+90,date("Y"));
         $kembali           = date("Y-m-d", $tujuh_hari);

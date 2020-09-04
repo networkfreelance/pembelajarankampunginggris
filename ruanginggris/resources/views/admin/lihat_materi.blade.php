@@ -51,6 +51,8 @@
                   <td>{{ $p->buku }}</td>
                   <td>
                     <a href="{{ url('adminmateri/lihat_materi/'.$p->id_paket) }}">Tonton Materi</a>
+                    <a href="{{ url('edit_paket/'.$p->id_paket) }}">Edit Paket</a>
+                    <a href="{{ url('hapus_aksi/'.$p->id_paket) }}">Hapus Paket</a>
                   </td>
                 </tr>
                 @endforeach
