@@ -80,7 +80,7 @@ class LoginController extends Controller
                   $level=Auth::user()->level;
                   $id_login=Auth::user()->id;
 
-                  $tanggal=date("d-m-Y");
+                  $tanggal=date("Y-m-d");
 
                   DB::table('users')->where('id',$id_login)->update([
                     'status_login' => 'login',
@@ -103,11 +103,11 @@ class LoginController extends Controller
         }
 
     }else{
-        $tanggal           = date("d-m-Y");
+        $tanggal           = date("Y-m-d");
         $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+1,date("Y"));
         $kembali           = date("Y-m-d", $tujuh_hari);
 
-            if($expired_login<$kembali){
+            if($expired_login>$kembali){
               $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
               $status_login=$data->status_login;
               $id_login=$data->id;
