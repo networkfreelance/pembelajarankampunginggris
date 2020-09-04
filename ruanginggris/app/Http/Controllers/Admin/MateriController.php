@@ -88,15 +88,15 @@ class MateriController extends Controller
 
    public function edit_materi_view(Request $request, $id, $id_paket){
 
-    $slug = DB::table('paket')
-    ->where('id_paket',$id_paket)
-    ->get();
+    // $slug = DB::table('paket')
+    // ->where('id_paket',$id_paket)
+    // ->get();
 
-    $nama_paket = [];
+    // $nama_paket = [];
 
-    foreach ($slug as $data) {
-      $nama_paket = $data->nama_paket;
-    }
+    // foreach ($slug as $data) {
+    //   $nama_paket = $data->nama_paket;
+    // }
 
     $id_paket = $request->route('id_paket');
 

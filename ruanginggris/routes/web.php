@@ -57,6 +57,9 @@ Route::get('/hapus_aksi/{id}','Admin\PaketController@hapus_paket_aksi');
 Route::get('/edit_paket/{id}','Admin\PaketController@edit_paket');
 Route::post('/adminpaket/update_aksi','Admin\PaketController@aksi_update_paket');
 
+Route::get('/input_peserta_manual','Admin\PesertaController@input_peserta_manual');
+Route::post('/adminpeserta/tambah_peserta_aksi','Admin\PesertaController@aksi_input_peserta_manual');
+
 
 
 Route::get('/pesertadashboard','Peserta\DashboardController@index')->name('pesertadashboard');

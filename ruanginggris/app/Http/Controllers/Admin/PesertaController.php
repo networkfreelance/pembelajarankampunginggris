@@ -143,4 +143,62 @@ class PesertaController extends Controller
       	return redirect('/adminpeserta');
     }
 
+    public function input_peserta_manual(){
+       $grubpaket = DB::table('users')
+      ->groupBy('nama_paket')
+      ->get();
+       return view('admin.tambah_peserta',['grubpaket' => $grubpaket]);
+    }
+
+    public function aksi_input_peserta_manual(Request $request){
+
+    $tanggal=date('Y-m-d');
+
+    $nama = $request->input('nama');
+    $username = $request->input('username');
+    $email = $request->input('email');
+    $email_verified_at = $tanggal;
+    $password = $request->input('password');
+    $password_asli = $request->input('password_asli');
+    $alamat = $request->input('alamat');
+    $kota = $request->input('kota');
+    $telp = $request->input('telp');
+    $remember_token = '';
+    $created_at = $tanggal;
+    $updated_at = $tanggal;
+    $level = 'peserta';
+    $order_id = $request->input('order_id');
+    $nama_paket = $request->input('nama_paket');
+    $start_login = $tanggal;
+    $expired_login = $request->input('tgl');
+    $status_login = 'nologin';
+
+    $image = $request->file('file');
+    $new_name = rand() . '.' . $image->getClientOriginalExtension();
+    $image->move(public_path('foto_profil'), $new_name);
+
+      DB::table('users')->insert([
+        'nama' => $nama,
+        'username' => $username,
+        'email' => $email,
+        'email_verified_at' => $email_verified_at,
+        'password' => Hash::make($password),
+        'password_asli' => $password,
+        'alamat' => $alamat,
+        'kota' => $kota,
+        'telp' => $telp,
+        'foto' => $new_name,
+        'remember_token' => $remember_token,
+        'created_at' => $created_at,
+        'updated_at' => $updated_at,
+        'level' => $level,
+        'order_id' => $order_id,
+        'nama_paket' => $nama_paket,
+        'start_login' => $start_login,
+        'expired_login' => $expired_login,
+        'status_login' => $status_login,
+      ]);
+    return redirect('/adminpeserta');
+    }
+
 }

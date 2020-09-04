@@ -22,6 +22,7 @@
         <br>
         <button class="btn btn-success">Import Bulk Data</button>
         <a class="btn btn-warning" href="{{ route('export') }}">Export Bulk Data</a>
+        <a class="btn btn-primary" href="{{ url('/input_peserta_manual') }}">Input Peserta Manual</a>
     </form>
     <!-- <a href="{{ url('/adminpeserta/cetak_pdf') }}" class="btn btn-success btn-lg pull-right">Cetak Username Password</a> -->
   </div>
