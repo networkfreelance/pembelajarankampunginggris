@@ -23,35 +23,40 @@
 
         <form method="post" action="{{ url('/adminpaket/update_aksi') }}" enctype="multipart/form-data">
           @csrf
+          @foreach($paket as $p)
+          <input type="hidden" name="id_paket" class="form-control" value="{{ $p->id_paket }}">
           <!-- {{ csrf_token() }} -->
           <div class="box-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Pilih Paket</label>
-                  <select class="form-control" name="nama_paket">
-                    @foreach($paket as $p)
-                         <option name="{{ $p->nama_paket }}">{{ $p->nama_paket }}</option>
-                    @endforeach
-                 </select>
+              <select class="form-control" name="nama_paket">
+                <option name="{{ $p->nama_paket }}">{{ $p->nama_paket }}</option>
+                @foreach($grubpaket as $p2)
+                 <option name="{{ $p2->nama_paket }}">{{ $p2->nama_paket }}</option>
+                @endforeach
+              </select>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Buku</label>
-              <input type="text" name="buku" class="form-control" id="exampleInputPassword1" placeholder="Buku" required="">
+              <input type="text" name="buku" class="form-control" id="exampleInputPassword1" value="{{ $p->buku }}" required="">
             </div>
           </div>
+          @endforeach
+
           <!-- /.box-body -->
           <div id="success"></div>
           <div class="box-footer">
-            <button type="submit" name="upload" class="btn btn-primary">Submit</button>
+            <button type="submit" name="upload" class="btn btn-primary">Update</button>
           </div>
         </form>
       </div>
-      </div>
     </div>
-  </section>
+  </div>
+</section>
 
 
 
 
-  <!-- /.content -->
-  @endsection
-  <!-- DataTables -->
+<!-- /.content -->
+@endsection
+<!-- DataTables -->

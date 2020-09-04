@@ -75,16 +75,32 @@ class PaketController extends Controller
          }
 
   public function edit_paket($id){
-    $materi = DB::table('paket')
+    $paket = DB::table('paket')
     ->where('id_paket',$id)
     ->limit(1)
     ->get();
 
-    return view('admin.edit_paket',compact('materi'));
+     $grubpaket = DB::table('users')
+    ->groupBy('nama_paket')
+    ->get();
+
+    return view('admin.edit_paket',compact('paket','grubpaket'));
   }
 
-  public function aksi_update_paket(){
+  public function aksi_update_paket(Request $request){
 
+    $id_paket = $request->input('id_paket');
+    $nama_paket = $request->input('nama_paket');
+    $buku = $request->input('buku');
+
+  DB::table('paket')
+      ->where('id_paket',$id_paket)
+      ->update([
+         'nama_paket' => $nama_paket,
+         'buku' => $buku,
+       ]);
+
+      return redirect('/adminmateri');
   }
 
    public function hapus_paket_aksi($id_paket)
