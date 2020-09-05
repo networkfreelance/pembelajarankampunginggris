@@ -66,13 +66,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
+              <img src="{{ asset('foto_profil/')}}/{{Auth::user()->foto}}" class="user-image" alt="User Image">
               <span class="hidden-xs">User</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                <img src="{{ asset('foto_profil/')}}/{{Auth::user()->foto}}" class="img-circle" alt="User Image">
 
                 <p>
                   {{ Auth::user()->nama }}
@@ -82,9 +82,6 @@
 
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
                 <div class="pull-right">
                   <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">Sign out</a>
@@ -191,8 +188,19 @@ $(document).ready(function(){
 
 <script>
   $(function () {
-    $('#example1').DataTable()
+    $('#example1').DataTable({
+      'scrollX': true
+    })
     $('#example2').DataTable({
+      'paging'      : false,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : false,
+      'info'        : false,
+      'autoWidth'   : false
+    })
+     $('#example3').DataTable({
+      'scrollX'     : true,
       'paging'      : false,
       'lengthChange': false,
       'searching'   : false,

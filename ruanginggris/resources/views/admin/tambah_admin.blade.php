@@ -7,8 +7,7 @@
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active"> Materi</li>
-    <li class="active"> Lihat Materi</li>
+    <li class="active"> User Admin</li>
     <li class="active"> Tambah User Admin</li>
   </ol>
 </section>

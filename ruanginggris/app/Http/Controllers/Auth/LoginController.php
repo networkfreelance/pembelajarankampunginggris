@@ -36,7 +36,7 @@ class LoginController extends Controller
          return $this->redirectTo = '/admindashboard';
        }else if($level=="peserta"){
          //return redirect('/admindashboard');
-          return $this->redirectTo = '/pesertadashboard';
+          return $this->redirectTo = '/pesertakelas';
        }
 
      }
@@ -92,7 +92,7 @@ class LoginController extends Controller
                     // return redirect()->route('/admindashboard');
 
                   }else if($level=="peserta"){
-                    return redirect('pesertadashboard');
+                    return redirect('pesertakelas');
                      // return redirect()->route('/pesertadashboard');
                   }
               }else{

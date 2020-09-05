@@ -39,11 +39,10 @@
       </div>
     </div>
     <div class="box-body">
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Nama Paket</th>
-                  <!-- <th>Aksi</th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -58,12 +57,6 @@
               		</tr>
               		@endforeach
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>Nama Paket</th>
-                  <!-- <th>Aksi</th> -->
-                </tr>
-                </tfoot>
               </table>
     </div>
     <!-- /.box-body -->

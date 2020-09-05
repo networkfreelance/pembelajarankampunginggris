@@ -16,6 +16,9 @@
 <div class="row">
   <div class="col-md-6">
     <!-- <a href="{{ url('adminpeserta/tambah') }}" class="btn btn-success btn-lg pull-right">Tambah Peserta</a> -->
+    <div class="box box-primary">
+            <div class="box-header">
+    <div class="box-body">
     <form action="{{ url('/adminpeserta/import') }}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         <input type="file" name="file" class="form-control">
@@ -24,6 +27,9 @@
         <a class="btn btn-warning" href="{{ route('export') }}">Export Bulk Data</a>
         <a class="btn btn-primary" href="{{ url('/input_peserta_manual') }}">Input Peserta Manual</a>
     </form>
+    </div>
+  </div>
+</div>
     <!-- <a href="{{ url('/adminpeserta/cetak_pdf') }}" class="btn btn-success btn-lg pull-right">Cetak Username Password</a> -->
   </div>
 
@@ -84,23 +90,20 @@
                 <tr>
                   <th>Nama</th>
                   <th>Username</th>
-                  <!-- <th>Email</th> -->
                   <th>Password</th>
                   <th>Alamat</th>
                   <th>Kota</th>
                   <th>Telp</th>
                   <th>Level</th>
                   <th>Nama Paket</th>
-                  <th>Aksi</th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
                   @foreach($peserta as $p)
               		<tr>
-
               			<td>{{ $p->nama }}</td>
               			<td>{{ $p->username }}</td>
-                    <!-- <td>{{ $p->email }}</td> -->
                     <td>{{ $p->password_asli }}</td>
                     <td>{{ $p->alamat }}</td>
                     <td>{{ $p->kota }}</td>
@@ -108,29 +111,13 @@
                     <td>{{ $p->level }}</td>
                     <td>{{ $p->nama_paket }}</td>
               			<td>
-                      <a href="{{ url('/adminpeserta/cetak_pdf2/'.$p->id) }}">Cetak</a>
-                      |
-              				<a href="{{ url('adminpeserta/edit/'.$p->id) }}">Edit</a>
-              				|
-              				<a href="{{ url('adminpeserta/hapus_aksi/'.$p->id) }}">Hapus</a>
+                      <a class="btn btn-primary" href="{{ url('/adminpeserta/cetak_pdf2/'.$p->id) }}">Cetak</a>
+              				<a class="btn btn-warning" href="{{ url('adminpeserta/edit/'.$p->id) }}">Edit</a>
+              				<a class="btn btn-danger" href="{{ url('adminpeserta/hapus_aksi/'.$p->id) }}">Hapus</a>
               			</td>
               		</tr>
               		@endforeach
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>Nama</th>
-                  <th>Username</th>
-                  <!-- <th>Email</th> -->
-                  <th>Password</th>
-                  <th>Alamat</th>
-                  <th>Kota</th>
-                  <th>Telp</th>
-                  <th>Level</th>
-                  <th>Nama Paket</th>
-                  <th>Aksi</th>
-                </tr>
-                </tfoot>
               </table>
     </div>
     <!-- /.box-body -->
