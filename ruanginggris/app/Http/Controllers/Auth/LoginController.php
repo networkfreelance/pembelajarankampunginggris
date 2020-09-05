@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -37,7 +36,7 @@ class LoginController extends Controller
          return $this->redirectTo = '/admindashboard';
        }else if($level=="peserta"){
          //return redirect('/admindashboard');
-          return $this->redirectTo = '/pesertakelas';
+          return $this->redirectTo = '/pesertadashboard';
        }
 
      }
@@ -54,34 +53,71 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-
-      $this->validate($request, [
-            'username' => 'required|min:4',
-            'password' => 'required|min:4'
+      $input = $request->all();
+        $this->validate($request, [
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
-        if (Auth::attempt(['username' => $request['username'], 'password' => $request['password']]))
-        {
-            $singleUserToken = Str::random(16);
-            session(['singleUserToken' => $singleUserToken]);
+      //echo 1;
+      $count = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username) ->count();
 
-            $user = Auth::user();
-            $user->singleUserToken = $singleUserToken;
-            $user->update();
+      if($count>0){
+      $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
+      $status_login=$data->status_login;
+      $start_login=$data->start_login;
+      $expired_login=$data->expired_login;
 
-            $level=Auth::user()->level;
-            if($level=="admin"){
-              return redirect('/admindashboard');
-              // return redirect()->route('/admindashboard');
-            }else if($level=="peserta"){
-              return redirect('pesertakelas');
-               // return redirect()->route('/pesertadashboard');
-            }
+            if($status_login=="nologin"){
+              $pinjam            = date("Y-m-d");
+              $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+90,date("Y"));
+              $kembali           = date("Y-m-d", $tujuh_hari);
 
-        }
+                if($start_login<$kembali){
 
-        $error = 'Benutzername oder Passwort unbekannt!';
-        return redirect()->back()->withErrors($error);
+                    $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+                    if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
+                    {
+                        $id_login=Auth::user()->id;
+                        $tanggal=date("Y-m-d");
+                        DB::table('users')->where('id',$id_login)->update([
+                          'status_login' => 'login',
+                          'expired_login' => $tanggal,
+                        ]);
+
+                        $level=Auth::user()->level;
+                        if($level=="admin"){
+                          return redirect('/admindashboard');
+                          // return redirect()->route('/admindashboard');
+
+                        }else if($level=="peserta"){
+                          return redirect('pesertadashboard');
+                           // return redirect()->route('/pesertadashboard');
+                        }
+                    }else{
+                        return redirect()->route('login')->with('error','username Email-Address dan Password tidak cocok.');
+                    }
+              }else{
+                return redirect()->route('login')->with('error','Login sudah expired.');
+              }
+
+          }else{
+                  $tanggal= date("Y-m-d");
+                  if($expired_login<$tanggal){
+                    $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
+                    $status_login=$data->status_login;
+                    $id_login=$data->id;
+                    DB::table('users')->where('id',$id_login)->update([
+                      'status_login' => 'nologin',
+                      'expired_login' => $tanggal,
+                    ]);
+
+                  }
+              return redirect()->route('login')->with('error','Maff login sudah digunakan di device lain.');
+          }
+    }else{
+      return redirect()->route('login')->with('error','username Email-Address dan Password tidak cocok.');
+    }
 
     }
 
