@@ -22,5 +22,6 @@ class Bulk extends Model
       'nama_paket',
       'start_login',
       'expired_login',
+      'status_login',
     ];
 }

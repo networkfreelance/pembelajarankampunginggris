@@ -31,6 +31,7 @@ class BulkImport implements ToModel,WithHeadingRow
           'nama_paket' => $row['nama_paket'],
           'start_login' => $row['start_login'],
           'expired_login' => $row['expired_login'],
+          'status_login' => $row['status_login'],
         ]);
     }
 }

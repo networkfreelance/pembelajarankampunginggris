@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -53,72 +54,37 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-      $input = $request->all();
-        $this->validate($request, [
-            'username' => 'required',
-            'password' => 'required',
+
+      $this->validate($request, [
+            'username' => 'required|min:4',
+            'password' => 'required|min:4'
         ]);
 
-      //echo 1;
-      $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
-      $status_login=$data->status_login;
-      $start_login=$data->start_login;
-      $expired_login=$data->expired_login;
+        if (Auth::attempt(['username' => $request['username'], 'password' => $request['password']]))
+        {
+            $singleUserToken = Str::random(16);
+            session(['singleUserToken' => $singleUserToken]);
 
-      if($status_login=="nologin"){
+            $user = Auth::user();
+            $user->singleUserToken = $singleUserToken;
+            $user->update();
 
-        $pinjam            = date("Y-m-d");
-        $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+90,date("Y"));
-        $kembali           = date("Y-m-d", $tujuh_hari);
+            $level=Auth::user()->level;
+            if($level=="admin"){
+              return redirect('/admindashboard');
+              // return redirect()->route('/admindashboard');
 
-          if($start_login<$kembali){
+            }else if($level=="peserta"){
+              return redirect('pesertadashboard');
+               // return redirect()->route('/pesertadashboard');
+            }
 
-              $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-              if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
-              {
-
-                  $level=Auth::user()->level;
-                  $id_login=Auth::user()->id;
-
-                  $tanggal=date("Y-m-d");
-
-                  DB::table('users')->where('id',$id_login)->update([
-                    'status_login' => 'login',
-                    'expired_login' => $tanggal,
-                  ]);
-
-                  if($level=="admin"){
-                    return redirect('/admindashboard');
-                    // return redirect()->route('/admindashboard');
-
-                  }else if($level=="peserta"){
-                    return redirect('pesertadashboard');
-                     // return redirect()->route('/pesertadashboard');
-                  }
-              }else{
-                  return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
-              }
-        }else{
-          return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
+            // return redirect()->route('dashboard');
+            return redirect()->back()->withErrors($error);
         }
 
-    }else{
-        $tanggal           = date("Y-m-d");
-        $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+1,date("Y"));
-        $kembali           = date("Y-m-d", $tujuh_hari);
-
-            if($expired_login<$kembali){
-              $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
-              $status_login=$data->status_login;
-              $id_login=$data->id;
-              DB::table('users')->where('id',$id_login)->update([
-                'status_login' => 'nologin',
-                'expired_login' => $tanggal,
-              ]);
-
-            }
-        return redirect()->route('login')->with('error','Email-Address And Password Are Wrong.');
-    }
+        $error = 'Benutzername oder Passwort unbekannt!';
+        return redirect()->back()->withErrors($error);
 
     }
 
