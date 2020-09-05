@@ -16,6 +16,9 @@
 <div class="row">
   <div class="col-md-6">
     <!-- <a href="{{ url('adminadmin/tambah') }}" class="btn btn-success btn-lg pull-right">Tambah admin</a> -->
+     <div class="box box-primary">
+            <div class="box-header">
+    <div class="box-body">
     <form action="{{ url('admin/import') }}" method="POST" name="importform" enctype="multipart/form-data">
         {{ csrf_field() }}
         <input type="file" name="file" class="form-control">
@@ -24,17 +27,8 @@
         <a class="btn btn-warning" href="{{ route('export') }}">Export Bulk Data</a>
     </form>
   </div>
-  <div class="col-md-6">
-    <div class="box box-primary">
-      <div class="box-header">
-        <h3 class="box-title">Navigasi</h3>
-      </div>
-      <div class="box-body">
-        <!-- Date -->
-        <a class="btn btn-danger" href="{{ url('admin/tambah') }}">Tambah User Admin</a>
-      </div>
-      <!-- /.box-body -->
-    </div>
+</div>
+</div>
   </div>
   <div class="col-md-12">
   <!-- Default box -->
@@ -51,7 +45,8 @@
       </div>
     </div>
     <div class="box-body">
-            <table id="example1" class="table table-bordered table-striped">
+      <a class="btn btn-block btn-success" href="{{ url('admin/tambah') }}">Tambah User Admin</a>
+            <table id="example3" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Nama</th>
@@ -62,7 +57,7 @@
                   <th>Kota</th>
                   <th>Telp</th>
                   <th>Level</th>
-                  <th>Aksi</th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -78,26 +73,12 @@
                     <td>{{ $p->telp }}</td>
                     <td>{{ $p->level }}</td>
               			<td>
-              				<a href="{{ url('admin/edit/'.$p->id) }}">Edit</a>
-              				|
-              				<a href="{{ url('/admin/hapus_aksi/'.$p->id) }}">Hapus</a>
+              				<a class="btn btn-warning" href="{{ url('admin/edit/'.$p->id) }}">Edit</a>
+              				<a class="btn btn-danger" href="{{ url('/admin/hapus_aksi/'.$p->id) }}">Hapus</a>
               			</td>
               		</tr>
               		@endforeach
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>Nama</th>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Alamat</th>
-                  <th>Kota</th>
-                  <th>Telp</th>
-                  <th>Level</th>
-                  <th>Aksi</th>
-                </tr>
-                </tfoot>
               </table>
     </div>
     <!-- /.box-body -->

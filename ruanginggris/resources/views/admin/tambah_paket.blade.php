@@ -27,6 +27,7 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Pilih Paket</label>
                   <select class="form-control" name="nama_paket">
+                    <option>--- Pilih Paket ---</option>
                     @foreach($paket as $p)
                          <option name="{{ $p->nama_paket }}">{{ $p->nama_paket }}</option>
                     @endforeach
@@ -40,7 +41,7 @@
           <!-- /.box-body -->
           <div id="success"></div>
           <div class="box-footer">
-            <button type="submit" name="upload" class="btn btn-primary">Submit</button>
+            <button type="submit" name="upload" class="btn btn-primary">Tambah</button>
           </div>
         </form>
       </div>

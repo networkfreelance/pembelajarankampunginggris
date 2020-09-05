@@ -13,11 +13,6 @@
 
 <!-- Main content -->
 <section class="content">
-  <div class="row">
-    <div class="col-md-12">
-    <a href="{{ url('adminpaket/tambah/') }}" class="btn btn-success btn-lg pull-right">Tambah Paket</a>
-    </div>
-  </div>
 <div class="row">
   <div class="col-md-12">
   <!-- Default box -->
@@ -33,6 +28,7 @@
       </div>
     </div>
     <div class="box-body">
+      <a href="{{ url('adminpaket/tambah/') }}" class="btn btn-block btn-success">Tambah Paket</a>
       <table id="example2" class="table table-bordered table-striped">
           <thead>
           <tr>
@@ -46,9 +42,9 @@
               <td>{{ $p->nama_paket }}</td>
               <td>{{ $p->buku }}</td>
               <td>
-                <a href="{{ url('adminmateri/lihat_materi/'.$p->id_paket) }}">Tonton Materi</a>
-                <a href="{{ url('edit_paket/'.$p->id_paket) }}">Edit Paket</a>
-                <a href="{{ url('hapus_aksi/'.$p->id_paket) }}">Hapus Paket</a>
+                <a class="btn btn-primary" href="{{ url('adminmateri/lihat_materi/'.$p->id_paket) }}">Tonton Materi</a>
+                <a class="btn btn-warning" href="{{ url('edit_paket/'.$p->id_paket) }}">Edit Paket</a>
+                <a class="btn btn-danger" href="{{ url('hapus_aksi/'.$p->id_paket) }}">Hapus Paket</a>
               </td>
             </tr>
             @endforeach

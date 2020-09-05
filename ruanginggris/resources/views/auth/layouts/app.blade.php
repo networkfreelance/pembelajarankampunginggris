@@ -23,13 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'RuanganTutor') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
+                <marquee><p>Selamat Datang di Website RUANGAN TUTOR, solusi belajar tanpa tatap muka!</p></marquee>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -74,7 +68,7 @@
 
         <main class="py-4">
             <center>
-                <img width="400" src="{{ url('/img/logo.png') }}">
+                <img style="width: 30%; height: 100%;" src="{{ asset('img/new.png')}}" class="user-image" alt="User Image">
             </center>
             @yield('content')
         </main>

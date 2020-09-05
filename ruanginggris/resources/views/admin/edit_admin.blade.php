@@ -3,13 +3,12 @@
 @section('konten')
 <section class="content-header">
   <h1>
-    Tambah User Admin
+    Edit User Admin
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active"> Materi</li>
-    <li class="active"> Lihat Materi</li>
-    <li class="active"> Tambah User Admin</li>
+    <li class="active"> User Admin</li>
+    <li class="active"> Edit User Admin</li>
   </ol>
 </section>
 
@@ -24,7 +23,7 @@
 @foreach($admin as $a)
         <form method="post" action="{{ url('/admin/update_aksi') }}" enctype="multipart/form-data">
           @csrf
-          <input type="text" name="id" value="{{ $a->id }}" class="form-control" id="exampleInputEmail1" placeholder="Id" required="">
+          <input type="hidden" name="id" value="{{ $a->id }}" class="form-control" id="exampleInputEmail1" placeholder="Id" required="">
           <!-- {{ csrf_token() }} -->
           <div class="box-body">
             <div class="form-group">
@@ -57,8 +56,8 @@
             </div>
             <div class="form-group">
               <label for="inputEmail3">Foto</label>
-              <img src="{{ url('/foto_admin/'.$a->foto) }}" width="100" height="100">
               <div class="col-sm-12">
+                <img src="{{ asset('/foto_admin/'.$a->foto) }}" width="100" height="100">
                 <input type="file" name="file" class="form-control" id="exampleInputFile">
               </div>
             </div>
@@ -66,7 +65,7 @@
           <!-- /.box-body -->
           <div id="success"></div>
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Edit</button>
+            <button type="submit" class="btn btn-primary">Update</button>
           </div>
         </form>
   @endforeach

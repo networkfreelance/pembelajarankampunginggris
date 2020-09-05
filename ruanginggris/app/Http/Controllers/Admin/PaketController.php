@@ -58,13 +58,13 @@ class PaketController extends Controller
    public function tambah_aksi(Request $request)
     {
 
-      $id_user_login=Auth::user()->id;
+      //$id_user_login=Auth::user()->id;
       DB::table('paket')->insert([
         'nama_paket' => $request->nama_paket,
         'buku' => $request->buku,
       ]);
       // alihkan halaman ke halaman pegawai
-      return redirect()->back();
+      return redirect('/adminmateri');
     }
         public function hapus_aksi($id)
          {

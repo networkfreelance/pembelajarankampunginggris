@@ -8,16 +8,6 @@ video {
   height: auto   !important;
 }
 </style>
-<section class="content-header">
-  <h1>
-    Preview Materi
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Preview Materi</li>
-  </ol>
-</section>
-
 <!-- Main content -->
 <section class="content">
 
@@ -63,7 +53,7 @@ video {
     </div>
     <!-- /.col -->
     <div class="col-md-4">
-      <a href="{{ url('/pesertakelas') }}" class="btn btn-block btn-primary btn-lg">Back - Kembali ke Daftar Materi</a>
+      <a href="{{ url('/pesertakelas') }}" class="btn btn-block btn-danger btn-lg">Kembali ke Daftar Materi</a>
     </div>
 @endforeach
 

@@ -30,7 +30,7 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Pilih Paket</label>
               <select class="form-control" name="nama_paket">
-                <option name="{{ $p->nama_paket }}">{{ $p->nama_paket }}</option>
+                <option disabled="">Pilihan Paket Awal {{ $p->nama_paket }}</option>
                 @foreach($grubpaket as $p2)
                  <option name="{{ $p2->nama_paket }}">{{ $p2->nama_paket }}</option>
                 @endforeach

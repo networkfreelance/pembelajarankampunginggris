@@ -37,7 +37,7 @@ class LoginController extends Controller
          return $this->redirectTo = '/admindashboard';
        }else if($level=="peserta"){
          //return redirect('/admindashboard');
-          return $this->redirectTo = '/pesertadashboard';
+          return $this->redirectTo = '/pesertakelas';
        }
 
      }
@@ -73,14 +73,11 @@ class LoginController extends Controller
             if($level=="admin"){
               return redirect('/admindashboard');
               // return redirect()->route('/admindashboard');
-
             }else if($level=="peserta"){
-              return redirect('pesertadashboard');
+              return redirect('pesertakelas');
                // return redirect()->route('/pesertadashboard');
             }
 
-            // return redirect()->route('dashboard');
-            return redirect()->back()->withErrors($error);
         }
 
         $error = 'Benutzername oder Passwort unbekannt!';

@@ -1,16 +1,6 @@
 @extends('layout')
 
 @section('konten')
-<section class="content-header">
-  <h1>
-    Ruang belajar
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Ruang Belajar</li>
-  </ol>
-</section>
-
 <!-- Main content -->
 <section class="content">
 <div class="row">
@@ -30,12 +20,12 @@
       </div>
     </div>
     <div class="box-body">
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Nama Paket</th>
                   <th>Buku</th>
-                  <th>Aksi</th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,9 +38,7 @@
               			<td>{{ $p->nama_paket }}</td>
               			<td>{{ $p->buku }}</td>
                     <td>
-              				<a href="{{ url('/lihat_materi/'.$p->id_paket) }}">Lihat Materi</a>
-              				|
-
+              				<a class="btn btn-success" href="{{ url('/lihat_materi/'.$p->id_paket) }}">Lihat Materi</a>
               			</td>
               		</tr>
                     @php
@@ -59,13 +47,6 @@
                     @endforeach
               		@endforeach
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>Nama Paket</th>
-                  <th>Buku</th>
-                  <th>Aksi</th>
-                </tr>
-                </tfoot>
               </table>
       </div>
       <!-- /.box-body -->
@@ -81,7 +62,7 @@
     <div class="col-md-6">
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title">Daftar materi</h3>
+        <h3 class="box-title">Daftar Materi</h3>
 
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -92,13 +73,13 @@
         </div>
       </div>
       <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example2" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>Nama Materi</th>
                     <th>Konten</th>
                     <th>Tanggal Publikasi</th>
-                    <th>Aksi</th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -108,19 +89,11 @@
                       <td>{{ $p2->konten }}</td>
                       <td>{{ $p2->tanggal_publikasi }}</td>
                       <td>
-                        <a href="{{ url('/preview_materi/'.$p2->id_materi) }}">Preview Materi</a>
+                        <a class="btn btn-success" href="{{ url('/preview_materi/'.$p2->id_materi) }}">Tonton Materi</a>
                       </td>
                     </tr>
                     @endforeach
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Nama Materi</th>
-                    <th>Konten</th>
-                    <th>Tanggal Publikasi</th>
-                    <th>Aksi</th>
-                  </tr>
-                  </tfoot>
                 </table>
       </div>
       <!-- /.box-body -->
