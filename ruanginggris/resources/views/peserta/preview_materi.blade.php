@@ -29,10 +29,10 @@ video {
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <video width="320" height="240" controls>
-                    <source src="{{ url('/video/'.$p->video) }}" type="video/mp4">
-                  Your browser does not support the video tag.
-              </video>
+              <div style="--aspect-ratio: 16/9;">
+                <iframe src="{{ $p->video }}" width="1600" height="900" frameborder="0"></iframe>
+                {{ $p->video }}
+              </div>
               <hr>
               <p>{{ $p->konten }}</p>
 

@@ -37,6 +37,10 @@
               <input type="text" name="konten" class="form-control" value="{{ $m->konten }}">
             </div>
             <div class="form-group">
+              <label>URL Video</label>
+              <input type="text" name="urlvideo" class="form-control" value="{{ $m->video }}">
+            </div>
+           <!--  <div class="form-group">
               <label>File Upload</label>
               <input type="file" name="file" id="file">
               <div class="help-block">
@@ -44,7 +48,7 @@
                   <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
           <!-- /.box-body -->
           <div id="success"></div>

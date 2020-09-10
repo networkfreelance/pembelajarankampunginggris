@@ -113,25 +113,26 @@ class MateriController extends Controller
     $id_paket = $request->input('id_paket');
     $materi = $request->input('materi');
     $konten = $request->input('konten');
+    $urlvideo = $request->input('urlvideo');
 
-    $rules = array(
-      'file'  => 'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:2000000|required'
-    );
+   //  $rules = array(
+   //    'file'  => 'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:2000000|required'
+   //  );
 
-    $error = Validator::make($request->all(), $rules);
+   //  $error = Validator::make($request->all(), $rules);
 
-   if($error->fails())
-    {
-      return response()->json(['errors' => $error->errors()->all()]);
-    }
+   // if($error->fails())
+   //  {
+   //    return response()->json(['errors' => $error->errors()->all()]);
+   //  }
 
-    $image = $request->file('file');
-    $new_name = rand() . '.' . $image->getClientOriginalExtension();
-    $image->move(public_path('video'), $new_name);
+   //  $image = $request->file('file');
+   //  $new_name = rand() . '.' . $image->getClientOriginalExtension();
+   //  $image->move(public_path('video'), $new_name);
 
-    $photo_db_update = $request->input('video');
-    $destinationPath2 = public_path() . '/video/'.$photo_db_update;
-    File::delete($destinationPath2);
+   //  $photo_db_update = $request->input('video');
+   //  $destinationPath2 = public_path() . '/video/'.$photo_db_update;
+   //  File::delete($destinationPath2);
 
       DB::table('materi')
       ->where('id_materi',$request->id_materi)
@@ -139,50 +140,52 @@ class MateriController extends Controller
          'id_paket' => $id_paket,
          'nama_materi' => $request->materi,
          'konten' => $request->konten,
-         'video' => $new_name,
+         'video' => $urlvideo,
        ]);
 
-       $output = array(
-      'success' => 'Video uploaded successfully'
-    );
+    //    $output = array(
+    //   'success' => 'Video uploaded successfully'
+    // );
 
-      return response()->json($output);
+      // return response()->json($output);
+      return redirect('/adminmateri');
   }
 
   public function aksi_tambah_materi(Request $request){
     $todayDate = date("Y-m-d H:i:s");
     $materi = $request->input('materi');
     $konten = $request->input('konten');
+    $urlvideo = $request->input('urlvideo');
 
-    $rules = array(
-      'file'  => 'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:2000000|required'
-    );
+    // $rules = array(
+    //   'file'  => 'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:2000000|required'
+    // );
 
-    $error = Validator::make($request->all(), $rules);
+    // $error = Validator::make($request->all(), $rules);
 
-    if($error->fails())
-    {
-      return response()->json(['errors' => $error->errors()->all()]);
-    }
+    // if($error->fails())
+    // {
+    //   return response()->json(['errors' => $error->errors()->all()]);
+    // }
 
-    $image = $request->file('file');
+    // $image = $request->file('file');
 
-    $new_name = rand() . '.' . $image->getClientOriginalExtension();
-    $image->move(public_path('video'), $new_name);
+    // $new_name = rand() . '.' . $image->getClientOriginalExtension();
+    // $image->move(public_path('video'), $new_name);
 
-    $output = array(
-      'success' => 'Video uploaded successfully',
-      // 'image'  => '<img src="/pembelajarankampunginggris/ruanginggris/public/images/'.$new_name.'" class="img-thumbnail" />'
-    );
+    // $output = array(
+    //   'success' => 'Video uploaded successfully',
+    //   // 'image'  => '<img src="/pembelajarankampunginggris/ruanginggris/public/images/'.$new_name.'" class="img-thumbnail" />'
+    // );
 
      DB::table('materi')->insert([
         'id_paket' => $request->id,
         'nama_materi' => $request->materi,
         'konten' => $request->konten,
-        'video' => $new_name,
+        'video' => $urlvideo,
         'tanggal_publikasi' => $todayDate,
       ]);
 
-     return response()->json($output);
+     return redirect()->back();
   }
 }
