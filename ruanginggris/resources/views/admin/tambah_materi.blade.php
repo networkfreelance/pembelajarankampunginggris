@@ -36,8 +36,8 @@
               <input type="text" name="konten" class="form-control" id="exampleInputPassword1" placeholder="Konten" >
             </div>
              <div class="form-group">
-              <label for="exampleInputPassword1">URL Video</label>
-              <input type="text" name="urlvideo" class="form-control" id="exampleInputPassword1" placeholder="URL Video Materi" >
+              <label for="exampleInputPassword1">EMBED / IFRAME</label>
+              <textarea name="urlvideo" class="form-control" id="exampleInputPassword1" placeholder="URL Video Materi" ></textarea>
             </div>
             <!-- <div class="form-group">
               <label>File Upload</label>

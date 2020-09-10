@@ -37,8 +37,8 @@
               <input type="text" name="konten" class="form-control" value="{{ $m->konten }}">
             </div>
             <div class="form-group">
-              <label>URL Video</label>
-              <input type="text" name="urlvideo" class="form-control" value="{{ $m->video }}">
+              <label for="exampleInputPassword1">EMBED / IFRAME</label>
+              <textarea name="urlvideo" class="form-control" >{{ $m->video }}</textarea>
             </div>
            <!--  <div class="form-group">
               <label>File Upload</label>

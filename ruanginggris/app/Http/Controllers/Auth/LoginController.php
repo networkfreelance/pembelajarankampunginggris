@@ -68,7 +68,7 @@ class LoginController extends Controller
       $start_login=$data->start_login;
       $expired_login=$data->expired_login;
 
-            if($status_login=="nologin"){
+            // if($status_login=="nologin"){
               $pinjam            = date("Y-m-d");
               $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+90,date("Y"));
               $kembali           = date("Y-m-d", $tujuh_hari);
@@ -101,20 +101,20 @@ class LoginController extends Controller
                 return redirect()->route('login')->with('error','Login sudah expired.');
               }
 
-          }else{
-                  $tanggal= date("Y-m-d");
-                  if($expired_login<$tanggal){
-                    $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
-                    $status_login=$data->status_login;
-                    $id_login=$data->id;
-                    DB::table('users')->where('id',$id_login)->update([
-                      'status_login' => 'nologin',
-                      'expired_login' => $tanggal,
-                    ]);
-
-                  }
-              return redirect()->route('login')->with('error','Maff login sudah digunakan di device lain.');
-          }
+          // }else{
+          //         $tanggal= date("Y-m-d");
+          //         if($expired_login<$tanggal){
+          //           $data = DB::table('users')->where('username', $request->username)->orWhere('email', $request->username)->first();
+          //           $status_login=$data->status_login;
+          //           $id_login=$data->id;
+          //           DB::table('users')->where('id',$id_login)->update([
+          //             'status_login' => 'nologin',
+          //             'expired_login' => $tanggal,
+          //           ]);
+          //
+          //         }
+          //     return redirect()->route('login')->with('error','Maff login sudah digunakan di device lain.');
+          // }
     }else{
       return redirect()->route('login')->with('error','username Email-Address dan Password tidak cocok.');
     }
