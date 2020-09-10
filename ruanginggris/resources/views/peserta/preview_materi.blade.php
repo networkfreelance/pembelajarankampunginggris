@@ -31,6 +31,10 @@ video {
             <div class="box-body">
               <div style="--aspect-ratio: 16/9;">
                 <iframe src="{{ $p->video }}" width="1600" height="900" frameborder="0"></iframe>
+
+
+                <hr>
+                <h2>Langsung Code tanpa Iframe CSS</h2>
                 {{ $p->video }}
               </div>
               <hr>
